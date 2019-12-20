@@ -45,9 +45,10 @@ public class Player : MonoBehaviour
         if (!IsMovementActive)
             return;
 
-        if (_inputHandler.IsChangeFeaturePressed())
+        // TODO remove if not using 2 keyboards
+        if (this.ToString().Contains("Raccoon1") && _inputHandler.IsChangeFeaturePressed()
+            || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltChangeFeaturePressed())
         {
-            Debug.Log("Invoke");
             HandsOverMovement?.Invoke();
         }
     }

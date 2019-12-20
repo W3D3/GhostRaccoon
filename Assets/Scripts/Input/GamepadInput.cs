@@ -291,6 +291,11 @@ public class GamepadInput : MonoBehaviour
     {
         return EnablePlayerControls && Input.GetKeyDown(ChangeFeatureKeyCode);
     }
+    
+    public bool IsAltChangeFeaturePressed()
+    {
+        return EnablePlayerControls && Input.GetKeyDown(KeyCode.LeftShift);
+    }
 }
 
 
