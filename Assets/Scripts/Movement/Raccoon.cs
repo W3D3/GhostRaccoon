@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Timeline;
 
-public class Player : MonoBehaviour
+public class Raccoon : MonoBehaviour
 {
     private Rigidbody _rigidbody;
 

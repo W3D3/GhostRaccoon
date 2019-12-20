@@ -7,19 +7,19 @@ using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.Experimental.PlayerLoop;
 
-public class PlayerManager : MonoBehaviour
+public class RaccoonMovementManager : MonoBehaviour
 {
     /// <summary>
     /// All Raccoons in the game. Has to be 2.
     /// </summary>
-    public List<Player> Raccoons;
+    public List<Raccoon> Raccoons;
 
-    private Player _activeMovementRaccoon = null;
+    private Raccoon _activeMovementRaccoon = null;
 
     /// <summary>
     /// The initially active raccoon.
     /// </summary>
-    public Player ActiveMovementRaccoon
+    public Raccoon ActiveMovementRaccoon
     {
         get { return _activeMovementRaccoon; }
         set
