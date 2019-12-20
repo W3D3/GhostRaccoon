@@ -32,6 +32,7 @@ public class GamepadInput : MonoBehaviour
     }
 
     private const string LeftHorizontal = "LeftHorizontal";
+    private const string LeftVertical = "LeftVertical";
     private const string RightHorizontal = "RightHorizontal";
     private const string RightVertical = "RightVertical";
     private const string Shoot = "Shoot";
@@ -56,6 +57,18 @@ public class GamepadInput : MonoBehaviour
     {
         ControllerType t = (ControllerType)ControllerNumber;
         var horVal = Input.GetAxis(LeftHorizontal + t.ToString());
+
+        return EnablePlayerControls ? horVal : 0;
+    }
+    
+    /// <summary>
+    /// Returns the value from the left stick Y axis.
+    /// </summary>
+    /// <returns></returns>
+    public float GetLeftVerticalValue()
+    {
+        ControllerType t = (ControllerType)ControllerNumber;
+        var horVal = Input.GetAxis(LeftVertical + t.ToString());
 
         return EnablePlayerControls ? horVal : 0;
     }
