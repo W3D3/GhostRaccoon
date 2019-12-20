@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Timeline;
 
 public class Player : MonoBehaviour
 {
@@ -13,7 +14,12 @@ public class Player : MonoBehaviour
     private float moveSpeed = 6;
     private Vector3 _velocity;
 
-    public UnityEvent HandsOverMovement; 
+    public UnityEvent HandsOverMovement;
+
+    /// <summary>
+    /// Forces movement independent of xor movement.
+    /// </summary>
+    public bool ForceMovement;
 
     /// <summary>
     /// Boolean if the movement is active for this raccoon.
@@ -30,6 +36,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ForceMovement)
+            IsMovementActive = true;
+        
         _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(),0, _inputHandler.GetLeftVerticalValue()).normalized * moveSpeed;
         
         // movement
