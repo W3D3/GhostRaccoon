@@ -13,6 +13,7 @@ public class Raccoon : MonoBehaviour
     private GamepadInput _inputHandler;
     private Animator _animator;
     private SoundEmitter _soundEmitter;
+    private bool _hiddenInTrash = false;
 
     private float moveSpeed = 6;
     private Vector3 _velocity;
@@ -59,7 +60,7 @@ public class Raccoon : MonoBehaviour
         _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(), 0, _inputHandler.GetLeftVerticalValue())
                         .normalized * moveSpeed;
 
-        if (IsMovementActive)
+        if (IsMovementActive && !_hiddenInTrash)
             HandleMovement();
     }
 
@@ -126,5 +127,17 @@ public class Raccoon : MonoBehaviour
         this.gameObject.SetActive(false);
 
         Won?.Invoke();
+    }
+
+    public void HideInTrash()
+    {
+        _hiddenInTrash = true;
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled=false;
+    }
+
+    public void ShowFromTrash()
+    {
+        _hiddenInTrash = false;
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled=true;
     }
 }
