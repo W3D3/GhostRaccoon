@@ -48,7 +48,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fff01cf28b1a5a745a0f49ad59d1537d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -722,14 +722,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30eeec6e845ba9c44a7349b0ceff9522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 1518203137528167252}
-  backgroundClip: {fileID: 0}
   racSwitch: {fileID: 1483397311137563781}
   racSwitchClip: {fileID: 0}
   racMove: {fileID: 2880961012693241910}
-  racMoveClip: {fileID: 0}
+  racMoveClip: {fileID: 8300000, guid: b42b43d162bb35149a2fe3c25abeac5d, type: 3}
   racNoise: {fileID: 5280841680616136647}
-  racNoiseClip: {fileID: 0}
+  racNoiseClip: {fileID: 8300000, guid: b42b43d162bb35149a2fe3c25abeac5d, type: 3}
   death: {fileID: 8530003570760368855}
   deathClip: {fileID: 0}
   win: {fileID: 4376084617420313649}

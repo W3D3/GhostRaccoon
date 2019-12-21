@@ -57,6 +57,8 @@ public class Raccoon : MonoBehaviour
     {
         if (!IsMovementActive)
             return;
+        if (_velocity != Vector3.zero)
+            SoundManager.Instance.playRacMove();
         
         _rigidbody.MovePosition(_rigidbody.position + _velocity * Time.fixedDeltaTime);
     }
