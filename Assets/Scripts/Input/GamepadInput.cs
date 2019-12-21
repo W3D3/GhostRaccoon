@@ -235,7 +235,7 @@ public class GamepadInput : MonoBehaviour
 
         float pressedDepth = Input.GetAxis(FireAxisName);
 
-        if (pressedDepth > ShootingButtonThreshold)
+        if (!regularFirePressed && pressedDepth > ShootingButtonThreshold)
         {
             regularFirePressed = true;
             return true;
