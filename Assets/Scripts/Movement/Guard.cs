@@ -13,10 +13,12 @@ public class Guard : MonoBehaviour
     private NavMeshAgent agent;
     private bool isAlerted = false;
     public Vector3 alertTarget;
+    private Animator _animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        _animator = GetComponentInChildren<Animator>();
         transform.position = waypoints[0];
         transform.LookAt(waypoints[1 % waypoints.Count]);
         agent = GetComponent<NavMeshAgent>();
@@ -54,6 +56,7 @@ public class Guard : MonoBehaviour
             
             if (waypoints != null && !agent.isStopped)
             {
+                _animator.SetInteger("State", 1);
                 agent.SetDestination(waypoints[index]);
                 index = (index + 1) % waypoints.Count;
             }
