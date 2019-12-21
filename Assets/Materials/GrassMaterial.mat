@@ -53,6 +53,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalFromTexture_9D9754C7_Texture_0:
+        m_Texture: {fileID: 2800000, guid: 6b25197d146cea34bb61103bbcf16f8c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NormalFromTexture_B8BCB55B_Texture_0:
         m_Texture: {fileID: 2800000, guid: 214291b61ef6f6b41a94d326285fe050, type: 3}
         m_Scale: {x: 1, y: 1}
