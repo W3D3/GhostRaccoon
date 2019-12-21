@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class RaccoonUnityEvent : UnityEvent<Raccoon>
 {
-    
 }
 
 public class Soul : MonoBehaviour
@@ -20,10 +19,10 @@ public class Soul : MonoBehaviour
     /// Triggered when the soul reached the goal raccoon.
     /// </summary>
     public UnityEvent<Raccoon> MovementFinished = new RaccoonUnityEvent();
-    
+
     private Raccoon _fromRaccoon = null,
         _toRaccoon = null;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +39,7 @@ public class Soul : MonoBehaviour
         if (_fromRaccoon == null)
             return;
 
-        Debug.Log("Update");
-        
+        Debug.Log("updating");
         var direction = Vector3.Lerp(this.transform.position, _toRaccoon.transform.position,
             Speed * Time.deltaTime);
         this.transform.position = direction;
@@ -55,8 +53,7 @@ public class Soul : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger");
-        if (other.gameObject.CompareTag("Raccoon"))
+        if (other.gameObject.GetComponent<Raccoon>() == _toRaccoon)
         {
             MovementFinished?.Invoke(_toRaccoon);
             Destroy(this.gameObject);
