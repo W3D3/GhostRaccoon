@@ -94,11 +94,7 @@ public class RaccoonMovementManager : MonoBehaviour
             Raccoon first = Raccoons.First();
             Raccoon second = Raccoons.Last();
 
-            if (first.IsDead || second.IsDead)
-                return false;
-            
-            var layerMask = ~((1 << first.gameObject.layer) | (1 << second.gameObject.layer));
-            return !Physics.Linecast(first.transform.position, second.transform.position, layerMask);
+            return !(first.IsDead || second.IsDead);
         }
     }
 
