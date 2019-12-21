@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Everything Sound related is managed here
+ * Class uses Singleton for easier use 
+ */
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource background;
-    public AudioClip backgroundClip;
     public AudioSource racSwitch;
     public AudioClip racSwitchClip;
     public AudioSource racMove;
@@ -29,7 +31,10 @@ public class SoundManager : MonoBehaviour
         else if (Instance != this)
             Destroy(gameObject);
     }
-    
+
+    /**
+     * Sound played if raccoon is moving
+     */
     public void playRacMove()
     {
         if (!racMove.isPlaying)
@@ -39,30 +44,48 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /**
+     * Sound played if raccoon makes noise to distract guards
+     */
     public void playRacNoise()
     {
-        racNoise.clip = racNoiseClip;
-        racNoise.Play();
+        if (!racMove.isPlaying)
+        {
+             racNoise.clip = racNoiseClip;
+                    racNoise.Play();
+        }
     }
     
+    /**
+     * Sound played if soul switches raccoon
+     */
     public void playRacSwitch()
     {
         racSwitch.clip = racSwitchClip;
         racSwitch.Play();
     }
     
+    /**
+     * Sound played if raccoon with soul is caught by Guard
+     */
     public void playDeath()
     {
         death.clip = deathClip;
         death.Play();
     }
     
+    /**
+     * Sound played if Soul reaches goal
+     */
     public void playWin()
     {
         win.clip = winClip;
         win.Play();
     }
     
+    /**
+     * Sound played if Guard detects soulless raccoon
+     */
     public void playDetect()
     {
         detect.clip = detectClip;
