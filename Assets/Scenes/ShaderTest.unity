@@ -839,6 +839,11 @@ PrefabInstance:
       propertyPath: Curve.m_Curve.Array.data[2].inWeight
       value: 0.045412477
       objectReference: {fileID: 0}
+    - target: {fileID: 8557847829972286873, guid: 5c53ae2f095914d4c957abcda5a75369,
+        type: 3}
+      propertyPath: Radius
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c53ae2f095914d4c957abcda5a75369, type: 3}
 --- !u!1001 &1583984218
