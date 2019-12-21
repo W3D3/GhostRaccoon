@@ -58,6 +58,7 @@ public class Raccoon : MonoBehaviour
         if (this.ToString().Contains("Raccoon1") && _inputHandler.IsShockwaveFeaturePressed()
             || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltShockwaveFeaturePressed())
         {
+            SoundManager.Instance.playRacNoise();
             Instantiate(ShockwavePrefab, transform.position, Quaternion.identity);
         }
     }

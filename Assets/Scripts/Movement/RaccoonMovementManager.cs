@@ -70,7 +70,10 @@ public class RaccoonMovementManager : MonoBehaviour
     public void HandleHandOverMovement()
     {
         if (RaccoonsHaveLineOfSight)
+        {
+            SoundManager.Instance.playRacSwitch();
             ActiveMovementRaccoon = Raccoons.Single(r => r != ActiveMovementRaccoon);
+        }
     }
 
     private bool RaccoonsHaveLineOfSight
