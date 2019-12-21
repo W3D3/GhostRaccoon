@@ -43,7 +43,20 @@ public class RaccoonMovementManager : MonoBehaviour
 
     public void HandleHandOverMovement()
     {
-        ActiveMovementRaccoon = Raccoons.Single(r => r != ActiveMovementRaccoon);
+        if (RaccoonsHaveLineOfSight)
+            ActiveMovementRaccoon = Raccoons.Single(r => r != ActiveMovementRaccoon);
+    }
+
+    private bool RaccoonsHaveLineOfSight
+    {
+        get
+        {
+            Raccoon first = Raccoons.First();
+            Raccoon second = Raccoons.Last();
+
+            var layerMask = ~((1 << first.gameObject.layer) | (1 << second.gameObject.layer));
+            return !Physics.Linecast(first.transform.position, second.transform.position, layerMask);
+        }
     }
 
     void Start()
