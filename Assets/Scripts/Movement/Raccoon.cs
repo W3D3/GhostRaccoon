@@ -14,13 +14,13 @@ public class Raccoon : MonoBehaviour
     private Animator _animator;
     private SoundEmitter _soundEmitter;
     private bool _hiddenInTrash = false;
-
-    private float moveSpeed = 6;
     private Vector3 _velocity;
 
     public UnityEvent HandsOverMovement;
     public UnityEvent<Raccoon> Died = new RaccoonUnityEvent();
     public UnityEvent Won;
+    
+    public float MoveSpeed = 5;
 
     /// <summary>
     /// Forces movement independent of xor movement.
@@ -58,7 +58,7 @@ public class Raccoon : MonoBehaviour
             IsMovementActive = true;
 
         _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(), 0, _inputHandler.GetLeftVerticalValue())
-                        .normalized * moveSpeed;
+                        .normalized * MoveSpeed;
 
         if (IsMovementActive && !_hiddenInTrash)
             HandleMovement();
