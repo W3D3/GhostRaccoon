@@ -161,6 +161,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrispGoal
       objectReference: {fileID: 0}
+    - target: {fileID: 1651062367082650294, guid: 298d5ae7e35a62443b1eb4511a9bac80,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 298d5ae7e35a62443b1eb4511a9bac80, type: 3}
 --- !u!1 &9143190150678702417 stripped
