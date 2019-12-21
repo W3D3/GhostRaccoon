@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,7 +10,7 @@ public class Guard : MonoBehaviour
 {
     public List<Vector3> waypoints;
     public float speed = 3;
-    public int index = 0;
+    public int index = 1;
     private NavMeshAgent agent;
     private bool isAlerted = false;
     public Vector3 alertTarget;
@@ -49,18 +50,34 @@ public class Guard : MonoBehaviour
             {
                 agent.isStopped = true;
                 isAlerted = false;
-                transform.Rotate(90,0,0);
+                // transform.DORotate(new Vector3(0, 90, 0), 1f)
+                //     .OnComplete(resumeNormal);
                 Invoke("resumeNormal", 4);
                 return;
             }
             
             if (waypoints != null && !agent.isStopped)
             {
-                _animator.SetInteger("State", 1);
-                agent.SetDestination(waypoints[index]);
-                index = (index + 1) % waypoints.Count;
+                // _animator.SetInteger("State", 1);
+                agent.isStopped = true;
+                try
+                {
+                    transform.DOLookAt(waypoints[index], 2f, AxisConstraint.Y);
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e.Message);
+                }
+                Invoke("setNextDestination", 2);
             }
         }
+    }
+
+    private void setNextDestination()
+    {
+        agent.isStopped = false;
+        agent.SetDestination(waypoints[index]);
+        index = (index + 1) % waypoints.Count;
     }
 
     private void resumeNormal()
