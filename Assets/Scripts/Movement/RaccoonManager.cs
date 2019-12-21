@@ -15,10 +15,7 @@ public class RaccoonManager : MonoBehaviour
     /// </summary>
     public Soul Soul;
 
-    /// <summary>
-    /// Change player info (UI)
-    /// </summary>
-    public PlayerInfoScript playerInfo;
+    public UIController uiController;
 
     private Raccoon _activeMovementRaccoon = null;
 
@@ -53,11 +50,8 @@ public class RaccoonManager : MonoBehaviour
         _activeMovementRaccoon = value;
         _activeMovementRaccoon.IsMovementActive = true;
         AddRaccoonHandlers(_activeMovementRaccoon);
-
-        if (playerInfo != null)
-        {
-            playerInfo.SetActivePlayer(value == Raccoons.First() ? 0 : 1);
-        }
+        
+        uiController.SetActivePlayer(value == Raccoons.First() ? 0 : 1);
     }
 
     private void AddRaccoonHandlers(Raccoon r)
@@ -101,15 +95,13 @@ public class RaccoonManager : MonoBehaviour
     {
         if (deadRaccoon == _activeMovementRaccoon)
         {
-            // TODO game over
-            Debug.Log("GAME OVER");
+            uiController.DisplayGameOver();
         }
     }
 
     private void HandleWon()
     {
-        // TODO won
-        Debug.Log("WON");
+        uiController.DisplayNextLevel();
     }
 
     private bool RaccoonsHaveLineOfSight
