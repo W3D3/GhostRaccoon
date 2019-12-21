@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Cinemachine.Utility;
@@ -92,7 +92,7 @@ public class Raccoon : MonoBehaviour
 
     private void move()
     {
-        SoundManager.Instance.playRacMove();
+        transform.LookAt(_rigidbody.position + _velocity * Time.fixedDeltaTime);
         _animator.SetFloat("Speed", 5);
         _rigidbody.MovePosition(_rigidbody.position + _velocity * Time.fixedDeltaTime);
     }

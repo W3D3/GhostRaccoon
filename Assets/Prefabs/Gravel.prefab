@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6862267969991189265}
   - component: {fileID: 6862267969991189264}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: Gravel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f517d9fd9fa1846dea9f8cb80c1c61fe, type: 2}
+  - {fileID: 2100000, guid: c0ada7027c6de9547afcc8741c34c0cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

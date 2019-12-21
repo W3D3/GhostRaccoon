@@ -91,10 +91,7 @@ GameObject:
   - component: {fileID: 4937661698206038265}
   - component: {fileID: 4937661698206038266}
   - component: {fileID: 4937661698206038245}
-  - component: {fileID: 8366966341343319428}
-  - component: {fileID: 4937661698206038246}
   - component: {fileID: 4937661698206038244}
-  - component: {fileID: 559945462}
   - component: {fileID: 559945463}
   - component: {fileID: 559945453}
   m_Layer: 9
@@ -196,34 +193,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &8366966341343319428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4937661698206038267}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9ba63392baa60408229361afc735cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HandsOverMovement:
-    m_PersistentCalls:
-      m_Calls: []
-  ForceMovement: 1
---- !u!114 &4937661698206038246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4937661698206038267}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db5281d8aa984b4d8bc8dac052c00e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4937661698206038244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,18 +218,6 @@ MonoBehaviour:
   viewMeshFilter: {fileID: 4937661697875747569}
   edgeDetectionAccuracy: 6
   edgeDistanceThreshold: 0.5
---- !u!114 &559945462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4937661698206038267}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cacb0d6b83524868947cc1069979b31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &559945463
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -300,6 +257,9 @@ MonoBehaviour:
   - {x: 10.82, y: 0, z: 2}
   - {x: 10.84, y: 0, z: -8.56}
   - {x: -1.4, y: 0, z: -5.12}
+  speed: 3
+  index: 0
+  alertTarget: {x: 0, y: 0, z: 0}
 --- !u!1001 &4937661698408491900
 PrefabInstance:
   m_ObjectHideFlags: 0
