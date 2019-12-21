@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6585212606273475067}
   m_Layer: 0
   m_Name: Raccoon2
-  m_TagString: Untagged
+  m_TagString: Raccoon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9ba63392baa60408229361afc735cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HandsOverMovement:
+    m_PersistentCalls:
+      m_Calls: []
+  ForceMovement: 0
 --- !u!114 &6585212606273475067
 MonoBehaviour:
   m_ObjectHideFlags: 0
