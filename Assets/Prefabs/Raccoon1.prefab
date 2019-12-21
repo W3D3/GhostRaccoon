@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6585212606273475067}
   m_Layer: 8
   m_Name: Raccoon1
-  m_TagString: Untagged
+  m_TagString: Raccoon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
