@@ -10,10 +10,10 @@ public class Guard : MonoBehaviour
 {
     public List<Vector3> waypoints;
     public float speed = 3;
-    public int index = 1;
+    private int index = 0;
     private NavMeshAgent agent;
     private bool isAlerted = false;
-    public Vector3 alertTarget;
+    private Vector3 alertTarget;
     private Animator _animator;
 
     // Start is called before the first frame update
@@ -42,27 +42,27 @@ public class Guard : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (agent.remainingDistance == 0f)
+        bool close = Mathf.Abs(transform.position.x - waypoints[index].x) +  Mathf.Abs(transform.position.z - waypoints[index].z) == 0;
+        if (close)
         {
             if (isAlerted)
             {
                 agent.isStopped = true;
                 isAlerted = false;
-                // transform.DORotate(new Vector3(0, 90, 0), 1f)
-                //     .OnComplete(resumeNormal);
+                _animator.SetInteger("State", 4);
                 Invoke("resumeNormal", 4);
                 return;
             }
             
             if (waypoints != null && !agent.isStopped)
             {
-                // _animator.SetInteger("State", 1);
                 agent.isStopped = true;
+                _animator.SetInteger("State", 0);
                 try
                 {
-                    transform.DOLookAt(waypoints[index], 2f, AxisConstraint.Y);
+                    transform.DOLookAt(waypoints[(index + 1) % waypoints.Count], 2f, AxisConstraint.Y);
                 }
                 catch (Exception e)
                 {
@@ -75,14 +75,17 @@ public class Guard : MonoBehaviour
 
     private void setNextDestination()
     {
-        agent.isStopped = false;
-        agent.SetDestination(waypoints[index]);
         index = (index + 1) % waypoints.Count;
+        Debug.Log("walking to index " + index);
+        resumeNormal();
+        agent.SetDestination(waypoints[index]);
+        
     }
 
     private void resumeNormal()
     {
         agent.isStopped = false;
+        _animator.SetInteger("State", 1);
     }
 
     public void alertGuard(Vector3 emitterPos)
