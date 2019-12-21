@@ -100,5 +100,6 @@ public class Raccoon : MonoBehaviour
     {
         // TODO kill for real
         Debug.Log("killed");
+        _animator.SetTrigger("Dying");
     }
 }
