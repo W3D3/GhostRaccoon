@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 1311242754762711362}
   - component: {fileID: -4676952131538005905}
   - component: {fileID: 6585212606273475067}
-  m_Layer: 0
+  - component: {fileID: 7977913404033456526}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,3 +140,17 @@ MonoBehaviour:
   EnablePlayerControls: 1
   ControllerNumber: 0
   ShootingButtonThreshold: 0
+--- !u!114 &7977913404033456526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7668350669318110842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c1d8171619a6ce47b3708c05992b58d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  InSight: 0

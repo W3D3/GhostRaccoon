@@ -259,4 +259,45 @@ public class GamepadInput : MonoBehaviour
         }
         return false;
     }
+    
+    private KeyCode ChangeFeatureKeyCode
+    {
+        get
+        {
+            KeyCode code = KeyCode.LeftControl;
+            switch ((ControllerType)ControllerNumber)
+            {
+                case ControllerType.Joystick1:
+                    code = KeyCode.Joystick1Button3;
+                    break;
+                case ControllerType.Joystick2:
+                    code = KeyCode.Joystick2Button3;
+                    break;
+                case ControllerType.Joystick3:
+                    code = KeyCode.Joystick3Button3;
+                    break;
+                case ControllerType.Joystick4:
+                    code = KeyCode.Joystick4Button3;
+                    break;
+                default:
+                    break;
+            }
+
+            return code;
+        }
+    }
+    
+    public bool IsChangeFeaturePressed()
+    {
+        return EnablePlayerControls && Input.GetKeyDown(ChangeFeatureKeyCode);
+    }
+    
+    public bool IsAltChangeFeaturePressed()
+    {
+        return EnablePlayerControls && Input.GetKeyDown(KeyCode.LeftShift);
+    }
 }
+
+
+
+
