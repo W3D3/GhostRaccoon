@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 1311242754762711362}
   - component: {fileID: -4676952131538005905}
   - component: {fileID: 6585212606273475067}
+  - component: {fileID: 21155356}
   m_Layer: 8
   m_Name: Raccoon1
   m_TagString: Raccoon
@@ -235,5 +236,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnablePlayerControls: 1
-  ControllerNumber: 1
+  ControllerNumber: 0
   ShootingButtonThreshold: 0
+--- !u!114 &21155356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7668350669318110842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b737921c29dbc4ce58ef7a4871de45c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guardMask:
+    serializedVersion: 2
+    m_Bits: 512
+  soundRadius: 5

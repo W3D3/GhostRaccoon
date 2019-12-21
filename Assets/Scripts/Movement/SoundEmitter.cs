@@ -12,30 +12,13 @@ public class SoundEmitter : MonoBehaviour
     public LayerMask guardMask;
 
     public float soundRadius;
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            makeSound();
-        }
-        
-    }
-    
     private void OnDrawGizmosSelected()
     {
         Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, soundRadius);
     }
 
-    void makeSound()
+    public void makeSound()
     {
         Collider[] targetsInSoundRadius = Physics.OverlapSphere(transform.position, soundRadius, guardMask);
 

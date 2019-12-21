@@ -13,6 +13,7 @@ public class Raccoon : MonoBehaviour
 
     private float moveSpeed = 6;
     private Vector3 _velocity;
+    private SoundEmitter _soundEmitter;
 
     public UnityEvent HandsOverMovement;
 
@@ -36,6 +37,7 @@ public class Raccoon : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _inputHandler = GetComponent<GamepadInput>();
+        _soundEmitter = GetComponent<SoundEmitter>();
     }
 
     // Update is called once per frame
@@ -60,6 +62,7 @@ public class Raccoon : MonoBehaviour
             || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltShockwaveFeaturePressed())
         {
             SoundManager.Instance.playRacNoise();
+            _soundEmitter.makeSound();
             Instantiate(ShockwavePrefab, transform.position, Quaternion.identity);
         }
     }
