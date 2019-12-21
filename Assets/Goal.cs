@@ -21,11 +21,13 @@ public class Goal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Raccoon"))
         {
+            var raccoon = other.gameObject.GetComponent<Raccoon>();
+            raccoon.Win();
+            
             this.GetComponentInChildren<GoalTail>().ShowTail();
             
-            Debug.Log("win");
             
-            // todo win
+            
         }
     }
 }

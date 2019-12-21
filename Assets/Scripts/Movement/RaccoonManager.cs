@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class RaccoonMovementManager : MonoBehaviour
+public class RaccoonManager : MonoBehaviour
 {
     /// <summary>
     /// All Raccoons in the game. Has to be 2.
@@ -36,8 +36,7 @@ public class RaccoonMovementManager : MonoBehaviour
                 if (_activeMovementRaccoon != null)
                 {
                     _activeMovementRaccoon.IsMovementActive = false;
-                    _activeMovementRaccoon.HandsOverMovement.RemoveAllListeners();
-                    _activeMovementRaccoon.Died.RemoveAllListeners();
+                    RemoveRaccoonHandlers(_activeMovementRaccoon);
 
                     // show soul
                     MoveSoul(_activeMovementRaccoon, value);
@@ -53,13 +52,26 @@ public class RaccoonMovementManager : MonoBehaviour
         // add for new
         _activeMovementRaccoon = value;
         _activeMovementRaccoon.IsMovementActive = true;
-        _activeMovementRaccoon.HandsOverMovement.AddListener(HandleHandOverMovement);
-        _activeMovementRaccoon.Died.AddListener(HandleDied);
+        AddRaccoonHandlers(_activeMovementRaccoon);
 
         if (playerInfo != null)
         {
             playerInfo.SetActivePlayer(value == Raccoons.First() ? 0 : 1);
         }
+    }
+
+    private void AddRaccoonHandlers(Raccoon r)
+    {
+        r.HandsOverMovement.AddListener(HandleHandOverMovement);
+        r.Died.AddListener(HandleDied);
+        r.Won.AddListener(HandleWon);
+    }
+
+    private void RemoveRaccoonHandlers(Raccoon r)
+    {
+        r.HandsOverMovement.RemoveAllListeners();
+        r.Died.RemoveAllListeners();
+        r.Won.RemoveAllListeners();
     }
 
     private void MoveSoul(Raccoon from, Raccoon to)
@@ -92,6 +104,12 @@ public class RaccoonMovementManager : MonoBehaviour
             // TODO game over
             Debug.Log("GAME OVER");
         }
+    }
+
+    private void HandleWon()
+    {
+        // TODO won
+        Debug.Log("WON");
     }
 
     private bool RaccoonsHaveLineOfSight
