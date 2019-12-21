@@ -12,7 +12,12 @@ ModelImporter:
   - first:
       74: 8349542763059015795
     second: Armature|Walk
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: guard1
+    second: {fileID: 2100000, guid: 11e2bf6a840bec1408ae38239d4c5fcb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
