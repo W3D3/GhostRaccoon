@@ -533,6 +533,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Raccoon1
       objectReference: {fileID: 0}
+    - target: {fileID: 7977913404033456526, guid: ffe0bf35a472bfa4c9fb7a8b3a0a8851,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffe0bf35a472bfa4c9fb7a8b3a0a8851, type: 3}
 --- !u!114 &2076680196 stripped
