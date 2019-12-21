@@ -79,7 +79,7 @@ public class FieldOfView : MonoBehaviour
         for (int i = 0; i < stepCount; i++)
         {
             float angle = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
-            Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * viewRadius, Color.magenta);
+            // Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * viewRadius, Color.magenta);
             ViewCastInfo viewCast = ViewCast(angle);
 
             if (i > 0)
@@ -92,12 +92,12 @@ public class FieldOfView : MonoBehaviour
                     if (edge.pointA != Vector3.zero)
                     {
                         viewPoints.Add(edge.pointA);
-                        Debug.DrawLine(transform.position, edge.pointA, Color.green);
+                        // Debug.DrawLine(transform.position, edge.pointA, Color.green);
                     }
                     if (edge.pointB != Vector3.zero)
                     {
                         viewPoints.Add(edge.pointB);
-                        Debug.DrawLine(transform.position, edge.pointB, Color.green);
+                        // Debug.DrawLine(transform.position, edge.pointB, Color.green);
                     }
                 }
             }

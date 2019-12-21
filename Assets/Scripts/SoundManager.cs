@@ -50,10 +50,10 @@ public class SoundManager : MonoBehaviour
      */
     public void playRacNoise()
     {
-        if (!racMove.isPlaying)
+        if (!racNoise.isPlaying)
         {
              racNoise.clip = racNoiseClip;
-                    racNoise.Play();
+             racNoise.Play();
         }
     }
     

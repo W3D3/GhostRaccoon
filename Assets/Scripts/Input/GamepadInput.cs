@@ -68,9 +68,9 @@ public class GamepadInput : MonoBehaviour
     public float GetLeftVerticalValue()
     {
         ControllerType t = (ControllerType)ControllerNumber;
-        var horVal = Input.GetAxis(LeftVertical + t.ToString());
+        var val = Input.GetAxis(LeftVertical + t.ToString());
 
-        return EnablePlayerControls ? horVal : 0;
+        return EnablePlayerControls ? val : 0;
     }
 
     /// <summary>
@@ -264,20 +264,20 @@ public class GamepadInput : MonoBehaviour
     {
         get
         {
-            KeyCode code = KeyCode.Joystick1Button4;
+            KeyCode code = KeyCode.Joystick1Button3;
             switch ((ControllerType)ControllerNumber)
             {
                 case ControllerType.Joystick1:
-                    code = KeyCode.Joystick1Button4;
+                    code = KeyCode.Joystick1Button3;
                     break;
                 case ControllerType.Joystick2:
-                    code = KeyCode.Joystick2Button4;
+                    code = KeyCode.Joystick2Button3;
                     break;
                 case ControllerType.Joystick3:
-                    code = KeyCode.Joystick3Button4;
+                    code = KeyCode.Joystick3Button3;
                     break;
                 case ControllerType.Joystick4:
-                    code = KeyCode.Joystick4Button4;
+                    code = KeyCode.Joystick4Button3;
                     break;
             }
 
@@ -301,20 +301,20 @@ public class GamepadInput : MonoBehaviour
     {
         get
         {
-            KeyCode code = KeyCode.Joystick1Button2;
+            KeyCode code = KeyCode.Joystick1Button1;
             switch ((ControllerType)ControllerNumber)
             {
                 case ControllerType.Joystick1:
-                    code = KeyCode.Joystick1Button2;
+                    code = KeyCode.Joystick1Button1;
                     break;
                 case ControllerType.Joystick2:
-                    code = KeyCode.Joystick2Button2;
+                    code = KeyCode.Joystick2Button1;
                     break;
                 case ControllerType.Joystick3:
-                    code = KeyCode.Joystick3Button2;
+                    code = KeyCode.Joystick3Button1;
                     break;
                 case ControllerType.Joystick4:
-                    code = KeyCode.Joystick4Button2;
+                    code = KeyCode.Joystick4Button1;
                     break;
             }
 

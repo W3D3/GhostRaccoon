@@ -39,7 +39,6 @@ public class Soul : MonoBehaviour
         if (_fromRaccoon == null)
             return;
 
-        Debug.Log("updating");
         var direction = Vector3.Lerp(this.transform.position, _toRaccoon.transform.position,
             Speed * Time.deltaTime);
         this.transform.position = direction;
