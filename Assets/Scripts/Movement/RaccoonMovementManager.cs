@@ -36,6 +36,7 @@ public class RaccoonMovementManager : MonoBehaviour
                 {
                     _activeMovementRaccoon.IsMovementActive = false;
                     _activeMovementRaccoon.HandsOverMovement.RemoveAllListeners();
+                    _activeMovementRaccoon.Died.RemoveAllListeners();
 
                     // show soul
                     MoveSoul(_activeMovementRaccoon, value);
@@ -52,6 +53,7 @@ public class RaccoonMovementManager : MonoBehaviour
         _activeMovementRaccoon = value;
         _activeMovementRaccoon.IsMovementActive = true;
         _activeMovementRaccoon.HandsOverMovement.AddListener(HandleHandOverMovement);
+        _activeMovementRaccoon.Died.AddListener(HandleDied);
     }
 
     private void MoveSoul(Raccoon from, Raccoon to)
@@ -75,6 +77,15 @@ public class RaccoonMovementManager : MonoBehaviour
             ActiveMovementRaccoon = Raccoons.Single(r => r != ActiveMovementRaccoon);
         }
     }
+    
+    private void HandleDied(Raccoon deadRaccoon)
+    {
+        if (deadRaccoon == _activeMovementRaccoon)
+        {
+            // TODO game over
+            Debug.Log("GAME OVER");
+        }
+    }
 
     private bool RaccoonsHaveLineOfSight
     {
@@ -83,6 +94,9 @@ public class RaccoonMovementManager : MonoBehaviour
             Raccoon first = Raccoons.First();
             Raccoon second = Raccoons.Last();
 
+            if (first.IsDead || second.IsDead)
+                return false;
+            
             var layerMask = ~((1 << first.gameObject.layer) | (1 << second.gameObject.layer));
             return !Physics.Linecast(first.transform.position, second.transform.position, layerMask);
         }
