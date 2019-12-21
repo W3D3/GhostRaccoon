@@ -65,6 +65,7 @@ public class RaccoonMovementManager : MonoBehaviour
     private void MoveSoul(Raccoon from, Raccoon to)
     {
         Vector3 start = from.transform.position;
+        start.y += 1.3f;
         var s = Instantiate(Soul, start, Quaternion.identity);
         s.MovementFinished.AddListener(SoulMovementFinished);
         s.Move(from, to);

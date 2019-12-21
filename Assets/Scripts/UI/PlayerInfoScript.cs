@@ -21,6 +21,9 @@ public class PlayerInfoScript : MonoBehaviour
 
     public void SetActivePlayer(int player)
     {
+        if (_text == null)
+            return;
+        
         ActivePlayer = player;
         if (player == 0)
         {

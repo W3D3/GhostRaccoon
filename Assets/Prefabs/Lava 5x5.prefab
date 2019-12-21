@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 235168078715340726}
   - component: {fileID: 9112851322746715558}
   - component: {fileID: 3531960970823101645}
+  - component: {fileID: 7269923294497338162}
   m_Layer: 10
   m_Name: Lava 5x5
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487747776454138809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children:
   - {fileID: 5036916157908269352}
@@ -108,6 +109,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d7bd4c295c73b741a46bf228fb5f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7269923294497338162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487747776454138809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c0ed5e9bbef7144a77cd881384cc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3292905249451161829
