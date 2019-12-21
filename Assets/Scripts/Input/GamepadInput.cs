@@ -260,26 +260,24 @@ public class GamepadInput : MonoBehaviour
         return false;
     }
     
-    private KeyCode ChangeFeatureKeyCode
+    private KeyCode YKeyCodeController
     {
         get
         {
-            KeyCode code = KeyCode.LeftControl;
+            KeyCode code = KeyCode.Joystick1Button4;
             switch ((ControllerType)ControllerNumber)
             {
                 case ControllerType.Joystick1:
-                    code = KeyCode.Joystick1Button3;
+                    code = KeyCode.Joystick1Button4;
                     break;
                 case ControllerType.Joystick2:
-                    code = KeyCode.Joystick2Button3;
+                    code = KeyCode.Joystick2Button4;
                     break;
                 case ControllerType.Joystick3:
-                    code = KeyCode.Joystick3Button3;
+                    code = KeyCode.Joystick3Button4;
                     break;
                 case ControllerType.Joystick4:
-                    code = KeyCode.Joystick4Button3;
-                    break;
-                default:
+                    code = KeyCode.Joystick4Button4;
                     break;
             }
 
@@ -289,12 +287,51 @@ public class GamepadInput : MonoBehaviour
     
     public bool IsChangeFeaturePressed()
     {
-        return EnablePlayerControls && Input.GetKeyDown(ChangeFeatureKeyCode);
+        return EnablePlayerControls && 
+               (Input.GetKeyDown(YKeyCodeController) || Input.GetKeyDown(KeyCode.LeftControl));
     }
     
     public bool IsAltChangeFeaturePressed()
     {
-        return EnablePlayerControls && Input.GetKeyDown(KeyCode.LeftShift);
+        return EnablePlayerControls && 
+               (Input.GetKeyDown(YKeyCodeController) || Input.GetKeyDown(KeyCode.RightControl));
+    }
+    
+    private KeyCode BKeyCodeController
+    {
+        get
+        {
+            KeyCode code = KeyCode.Joystick1Button2;
+            switch ((ControllerType)ControllerNumber)
+            {
+                case ControllerType.Joystick1:
+                    code = KeyCode.Joystick1Button2;
+                    break;
+                case ControllerType.Joystick2:
+                    code = KeyCode.Joystick2Button2;
+                    break;
+                case ControllerType.Joystick3:
+                    code = KeyCode.Joystick3Button2;
+                    break;
+                case ControllerType.Joystick4:
+                    code = KeyCode.Joystick4Button2;
+                    break;
+            }
+
+            return code;
+        }
+    }
+
+    public bool IsShockwaveFeaturePressed()
+    {
+        return EnablePlayerControls && 
+               (Input.GetKeyDown(BKeyCodeController) || Input.GetKeyDown(KeyCode.LeftShift));
+    }
+    
+    public bool IsAltShockwaveFeaturePressed()
+    {
+        return EnablePlayerControls && 
+               (Input.GetKeyDown(BKeyCodeController) || Input.GetKeyDown(KeyCode.RightShift));
     }
 }
 

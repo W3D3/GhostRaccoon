@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Raccoons:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -4676952131538005905, guid: ffe0bf35a472bfa4c9fb7a8b3a0a8851, type: 3}
+  - {fileID: -4676952131538005905, guid: 776f6103d6914974cba64374ce9bbef5, type: 3}
   Soul: {fileID: 1642316020974074957, guid: 7a60c2a5a54a2284eb505ee1b209732a, type: 3}
 --- !u!1001 &2816397747940312048
 PrefabInstance:

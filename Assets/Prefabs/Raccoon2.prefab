@@ -235,5 +235,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnablePlayerControls: 1
-  ControllerNumber: 0
+  ControllerNumber: 2
   ShootingButtonThreshold: 0

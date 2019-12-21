@@ -46,19 +46,17 @@ public class Raccoon : MonoBehaviour
         
         _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(),0, _inputHandler.GetLeftVerticalValue()).normalized * moveSpeed;
         
-        // movement
         if (!IsMovementActive)
             return;
 
-        // TODO remove if not using 2 keyboards
         if (this.ToString().Contains("Raccoon1") && _inputHandler.IsChangeFeaturePressed()
             || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltChangeFeaturePressed())
         {
             HandsOverMovement?.Invoke();
         }
 
-        // TODO @alex: Find appropriate input
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (this.ToString().Contains("Raccoon1") && _inputHandler.IsShockwaveFeaturePressed()
+            || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltShockwaveFeaturePressed())
         {
             Instantiate(ShockwavePrefab, transform.position, Quaternion.identity);
         }
