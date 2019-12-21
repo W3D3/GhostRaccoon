@@ -17,6 +17,7 @@ public class Raccoon : MonoBehaviour
     private Vector3 _velocity;
 
     public UnityEvent HandsOverMovement;
+    public UnityEvent<Raccoon> Died = new RaccoonUnityEvent();
 
     /// <summary>
     /// Forces movement independent of xor movement.
@@ -28,9 +29,14 @@ public class Raccoon : MonoBehaviour
     /// </summary>
     public bool IsMovementActive { get; set; }
 
+    /// <summary>
+    /// Flag if raccoon is dead.
+    /// </summary>
+    public bool IsDead;
+
     /**
-     * Prefab for the shockwave
-     */
+ * Prefab for the shockwave
+ */
     public GameObject ShockwavePrefab;
 
     // Start is called before the first frame update
@@ -98,8 +104,14 @@ public class Raccoon : MonoBehaviour
 
     public void Die()
     {
-        // TODO kill for real
-        Debug.Log("killed");
+        Debug.Log("died");
+        
+        IsDead = true;
+        IsMovementActive = false;
+        
         _animator.SetTrigger("Dying");
+        SoundManager.Instance.playDeath();
+        
+        Died?.Invoke(this);
     }
 }

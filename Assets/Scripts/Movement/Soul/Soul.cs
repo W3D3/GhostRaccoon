@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RaccoonUnityEvent : UnityEvent<Raccoon>
-{
-}
-
 public class Soul : MonoBehaviour
 {
     /// <summary>
