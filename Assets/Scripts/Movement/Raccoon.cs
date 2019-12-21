@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Cinemachine.Utility;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Timeline;
@@ -8,14 +9,15 @@ using UnityEngine.Timeline;
 public class Raccoon : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-
     private GamepadInput _inputHandler;
+    private Animator _animator;
+    private SoundEmitter _soundEmitter;
 
     private float moveSpeed = 6;
     private Vector3 _velocity;
-    private SoundEmitter _soundEmitter;
 
     public UnityEvent HandsOverMovement;
+    public UnityEvent<Raccoon> Died = new RaccoonUnityEvent();
 
     /// <summary>
     /// Forces movement independent of xor movement.
@@ -27,9 +29,14 @@ public class Raccoon : MonoBehaviour
     /// </summary>
     public bool IsMovementActive { get; set; }
 
+    /// <summary>
+    /// Flag if raccoon is dead.
+    /// </summary>
+    public bool IsDead;
+
     /**
-     * Prefab for the shockwave
-     */
+ * Prefab for the shockwave
+ */
     public GameObject ShockwavePrefab;
 
     // Start is called before the first frame update
@@ -38,6 +45,7 @@ public class Raccoon : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _inputHandler = GetComponent<GamepadInput>();
         _soundEmitter = GetComponent<SoundEmitter>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -71,15 +79,39 @@ public class Raccoon : MonoBehaviour
     {
         if (!IsMovementActive)
             return;
-        if (_velocity != Vector3.zero)
-            SoundManager.Instance.playRacMove();
 
+        if (!_velocity.AlmostZero())
+        {
+            move();
+        }
+        else
+        {
+            stop();
+        }
+    }
+
+    private void move()
+    {
+        transform.LookAt(_rigidbody.position + _velocity * Time.fixedDeltaTime);
+        _animator.SetFloat("Speed", 5);
         _rigidbody.MovePosition(_rigidbody.position + _velocity * Time.fixedDeltaTime);
+    }
+
+    private void stop()
+    {
+        _animator.SetFloat("Speed", 0);
     }
 
     public void Die()
     {
-        // TODO kill for real
-        Debug.Log("killed");
+        Debug.Log("died");
+        
+        IsDead = true;
+        IsMovementActive = false;
+        
+        _animator.SetTrigger("Dying");
+        SoundManager.Instance.playDeath();
+        
+        Died?.Invoke(this);
     }
 }

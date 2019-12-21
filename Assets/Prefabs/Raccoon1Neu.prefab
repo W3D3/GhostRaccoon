@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553086430618711095}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1857183275851334267}
@@ -106,8 +106,9 @@ GameObject:
   - component: {fileID: 1470287820641889543}
   - component: {fileID: 8078610914099621011}
   - component: {fileID: 3134402172374512500}
+  - component: {fileID: 3259993652069807495}
   m_Layer: 8
-  m_Name: Raccoon1 (1)
+  m_Name: Raccoon1Neu
   m_TagString: Raccoon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4689608842807280402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.785511, y: 1.0096552, z: -0.553069}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8269971342746220994}
@@ -150,7 +151,7 @@ CapsuleCollider:
   m_Radius: 0.18
   m_Height: 1.9
   m_Direction: 0
-  m_Center: {x: 0, y: -0.7, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!54 &4129196667284298794
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,6 +217,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   soundRadius: 5
+--- !u!95 &3259993652069807495
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689608842807280402}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: c083e65868b9d724a8a3c3013125e006, type: 3}
+  m_Controller: {fileID: 9100000, guid: a5b063cb407d9ea49b32d5deb77a8e60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &5069478290359168705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -231,7 +251,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c083e65868b9d724a8a3c3013125e006,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.026
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c083e65868b9d724a8a3c3013125e006,
         type: 3}
@@ -246,7 +266,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c083e65868b9d724a8a3c3013125e006,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c083e65868b9d724a8a3c3013125e006,
         type: 3}
@@ -256,7 +276,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c083e65868b9d724a8a3c3013125e006,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c083e65868b9d724a8a3c3013125e006,
         type: 3}
@@ -271,7 +291,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c083e65868b9d724a8a3c3013125e006,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c083e65868b9d724a8a3c3013125e006,
         type: 3}
