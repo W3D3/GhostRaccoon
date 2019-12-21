@@ -49,27 +49,55 @@ public class GamepadInput : MonoBehaviour
     {
     }
 
+    private string _leftHorizontalAxisName = null;
+
+    private string LeftHorizontalAxisName
+    {
+        get
+        {
+            if (_leftHorizontalAxisName == null)
+            {
+                ControllerType t = (ControllerType) ControllerNumber;
+                _leftHorizontalAxisName = LeftHorizontal + t.ToString();
+            }
+
+            return _leftHorizontalAxisName;
+        }
+    }
+
     /// <summary>
     /// Returns the value from the left stick X axis.
     /// </summary>
     /// <returns></returns>
     public float GetLeftHorizontalValue()
     {
-        ControllerType t = (ControllerType)ControllerNumber;
-        var horVal = Input.GetAxis(LeftHorizontal + t.ToString());
-
-        return EnablePlayerControls ? horVal : 0;
+        var val = Input.GetAxis(LeftHorizontalAxisName);
+        return EnablePlayerControls ? val : 0;
     }
-    
+
+    private string _leftVerticalAxisName = null;
+
+    private string LeftVerticalAxisName
+    {
+        get
+        {
+            if (_leftVerticalAxisName == null)
+            {
+                ControllerType t = (ControllerType) ControllerNumber;
+                _leftVerticalAxisName = LeftVertical + t.ToString();
+            }
+
+            return _leftVerticalAxisName;
+        }
+    }
+
     /// <summary>
     /// Returns the value from the left stick Y axis.
     /// </summary>
     /// <returns></returns>
     public float GetLeftVerticalValue()
     {
-        ControllerType t = (ControllerType)ControllerNumber;
-        var val = Input.GetAxis(LeftVertical + t.ToString());
-
+        var val = Input.GetAxis(LeftVerticalAxisName);
         return EnablePlayerControls ? val : 0;
     }
 
@@ -79,7 +107,7 @@ public class GamepadInput : MonoBehaviour
     /// <returns></returns>
     public float GetRightHorizontalValue()
     {
-        ControllerType t = (ControllerType)ControllerNumber;
+        ControllerType t = (ControllerType) ControllerNumber;
         var horVal = Input.GetAxis(RightHorizontal + t.ToString());
 
         return EnablePlayerControls ? horVal : 0;
@@ -91,7 +119,7 @@ public class GamepadInput : MonoBehaviour
     /// <returns></returns>
     public float GetRightVerticalValue()
     {
-        ControllerType t = (ControllerType)ControllerNumber;
+        ControllerType t = (ControllerType) ControllerNumber;
         var horVal = Input.GetAxis(RightVertical + t.ToString());
 
         return EnablePlayerControls ? horVal : 0;
@@ -102,7 +130,7 @@ public class GamepadInput : MonoBehaviour
         get
         {
             KeyCode code = KeyCode.Space;
-            switch ((ControllerType)ControllerNumber)
+            switch ((ControllerType) ControllerNumber)
             {
                 case ControllerType.Joystick1:
                     code = KeyCode.Joystick1Button0;
@@ -147,7 +175,7 @@ public class GamepadInput : MonoBehaviour
         get
         {
             KeyCode code = KeyCode.Escape;
-            switch ((ControllerType)ControllerNumber)
+            switch ((ControllerType) ControllerNumber)
             {
                 case ControllerType.Joystick1:
                     code = KeyCode.Joystick1Button7;
@@ -178,7 +206,24 @@ public class GamepadInput : MonoBehaviour
         return EnablePlayerControls && Input.GetKeyUp(PauseKeyCode);
     }
 
+    private string _fireAxisName = null;
+
+    private string FireAxisName
+    {
+        get
+        {
+            if (_fireAxisName == null)
+            {
+                ControllerType t = (ControllerType) ControllerNumber;
+                _fireAxisName = Shoot + t.ToString();
+            }
+
+            return _fireAxisName;
+        }
+    }
+    
     private bool regularFirePressed = false;
+
     /// <summary>
     /// Returns true if the fire button was pressed.
     /// </summary>
@@ -188,14 +233,14 @@ public class GamepadInput : MonoBehaviour
         if (!EnablePlayerControls)
             return false;
 
-        ControllerType t = (ControllerType)ControllerNumber;
-        float pressedDepth = Input.GetAxis(Shoot + t.ToString());
+        float pressedDepth = Input.GetAxis(FireAxisName);
 
         if (pressedDepth > ShootingButtonThreshold)
         {
             regularFirePressed = true;
             return true;
         }
+
         return false;
     }
 
@@ -208,18 +253,19 @@ public class GamepadInput : MonoBehaviour
         if (!EnablePlayerControls)
             return false;
 
-        ControllerType t = (ControllerType)ControllerNumber;
-        float pressedDepth = Input.GetAxis(Shoot + t.ToString());
+        float pressedDepth = Input.GetAxis(FireAxisName);
 
         if (regularFirePressed && pressedDepth < ShootingButtonThreshold)
         {
             regularFirePressed = false;
             return true;
         }
+
         return false;
     }
-
+    
     private bool specialFirePressed = false;
+
     /// <summary>
     /// Returns true if the special fire button was pressed.
     /// </summary>
@@ -228,15 +274,15 @@ public class GamepadInput : MonoBehaviour
     {
         if (!EnablePlayerControls)
             return false;
-
-        ControllerType t = (ControllerType)ControllerNumber;
-        float pressedDepth = Input.GetAxis(Shoot + t.ToString());
+        
+        float pressedDepth = Input.GetAxis(FireAxisName);
 
         if (pressedDepth < -ShootingButtonThreshold)
         {
             specialFirePressed = true;
             return true;
         }
+
         return false;
     }
 
@@ -249,23 +295,23 @@ public class GamepadInput : MonoBehaviour
         if (!EnablePlayerControls)
             return false;
 
-        ControllerType t = (ControllerType)ControllerNumber;
-        float pressedDepth = Input.GetAxis(Shoot + t.ToString());
+        float pressedDepth = Input.GetAxis(FireAxisName);
 
         if (specialFirePressed && pressedDepth > -ShootingButtonThreshold)
         {
             specialFirePressed = false;
             return true;
         }
+
         return false;
     }
-    
+
     private KeyCode YKeyCodeController
     {
         get
         {
             KeyCode code = KeyCode.Joystick1Button3;
-            switch ((ControllerType)ControllerNumber)
+            switch ((ControllerType) ControllerNumber)
             {
                 case ControllerType.Joystick1:
                     code = KeyCode.Joystick1Button3;
@@ -284,25 +330,25 @@ public class GamepadInput : MonoBehaviour
             return code;
         }
     }
-    
+
     public bool IsChangeFeaturePressed()
     {
-        return EnablePlayerControls && 
+        return EnablePlayerControls &&
                (Input.GetKeyDown(YKeyCodeController) || Input.GetKeyDown(KeyCode.LeftControl));
     }
-    
+
     public bool IsAltChangeFeaturePressed()
     {
-        return EnablePlayerControls && 
+        return EnablePlayerControls &&
                (Input.GetKeyDown(YKeyCodeController) || Input.GetKeyDown(KeyCode.RightControl));
     }
-    
+
     private KeyCode BKeyCodeController
     {
         get
         {
             KeyCode code = KeyCode.Joystick1Button1;
-            switch ((ControllerType)ControllerNumber)
+            switch ((ControllerType) ControllerNumber)
             {
                 case ControllerType.Joystick1:
                     code = KeyCode.Joystick1Button1;
@@ -324,17 +370,13 @@ public class GamepadInput : MonoBehaviour
 
     public bool IsShockwaveFeaturePressed()
     {
-        return EnablePlayerControls && 
+        return EnablePlayerControls &&
                (Input.GetKeyDown(BKeyCodeController) || Input.GetKeyDown(KeyCode.LeftShift));
     }
-    
+
     public bool IsAltShockwaveFeaturePressed()
     {
-        return EnablePlayerControls && 
+        return EnablePlayerControls &&
                (Input.GetKeyDown(BKeyCodeController) || Input.GetKeyDown(KeyCode.RightShift));
     }
 }
-
-
-
-
