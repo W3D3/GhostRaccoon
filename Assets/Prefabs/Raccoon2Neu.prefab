@@ -14,8 +14,10 @@ GameObject:
   - component: {fileID: 5920312021191811587}
   - component: {fileID: 9152287428824306478}
   - component: {fileID: 1979344979686429370}
+  - component: {fileID: 4699599636535423923}
+  - component: {fileID: 8627977392414546534}
   m_Layer: 0
-  m_Name: Raccoon2 1
+  m_Name: Raccoon2Neu
   m_TagString: Raccoon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +75,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &9152287428824306478
 MonoBehaviour:
@@ -91,7 +93,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ForceMovement: 0
-  ShockwavePrefab: {fileID: 0}
+  ShockwavePrefab: {fileID: 3414354009756653860, guid: 5c53ae2f095914d4c957abcda5a75369,
+    type: 3}
 --- !u!114 &1979344979686429370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +110,41 @@ MonoBehaviour:
   EnablePlayerControls: 1
   ControllerNumber: 0
   ShootingButtonThreshold: 0
+--- !u!114 &4699599636535423923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3057979821195197755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b737921c29dbc4ce58ef7a4871de45c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guardMask:
+    serializedVersion: 2
+    m_Bits: 512
+  soundRadius: 5
+--- !u!95 &8627977392414546534
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3057979821195197755}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: c083e65868b9d724a8a3c3013125e006, type: 3}
+  m_Controller: {fileID: 9100000, guid: a5b063cb407d9ea49b32d5deb77a8e60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6272840417473237717
 GameObject:
   m_ObjectHideFlags: 0

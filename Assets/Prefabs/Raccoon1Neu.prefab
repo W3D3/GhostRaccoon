@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 8078610914099621011}
   - component: {fileID: 3134402172374512500}
   m_Layer: 8
-  m_Name: Raccoon1 (1)
+  m_Name: Raccoon1Neu
   m_TagString: Raccoon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
