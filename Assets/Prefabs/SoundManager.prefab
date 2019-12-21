@@ -723,14 +723,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   racSwitch: {fileID: 1483397311137563781}
-  racSwitchClip: {fileID: 0}
+  racSwitchClip: {fileID: 8300000, guid: 1f38ffb30e8ee01478e00d30f1085fbc, type: 3}
   racMove: {fileID: 2880961012693241910}
-  racMoveClip: {fileID: 8300000, guid: b42b43d162bb35149a2fe3c25abeac5d, type: 3}
+  racMoveClip: {fileID: 8300000, guid: dc41f142cfb51aa4eb344435e995e088, type: 3}
   racNoise: {fileID: 5280841680616136647}
   racNoiseClip: {fileID: 8300000, guid: b42b43d162bb35149a2fe3c25abeac5d, type: 3}
   death: {fileID: 8530003570760368855}
-  deathClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: eb6523552da73784bb2b679a43dfeef8, type: 3}
   win: {fileID: 4376084617420313649}
   winClip: {fileID: 0}
   detect: {fileID: 6609165431897813931}
-  detectClip: {fileID: 0}
+  detectClip: {fileID: 8300000, guid: 852a1c212deeab24cb0d65337496c4a0, type: 3}

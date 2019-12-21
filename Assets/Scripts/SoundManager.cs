@@ -39,6 +39,7 @@ public class SoundManager : MonoBehaviour
     {
         if (!racMove.isPlaying)
         {
+            racMove.volume = 0.08f;
             racMove.clip = racMoveClip;
             racMove.Play();
         }
