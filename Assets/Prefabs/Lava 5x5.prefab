@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9112851322746715558}
   - component: {fileID: 3531960970823101645}
   - component: {fileID: 7269923294497338162}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Lava 5x5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 8819664323705494659}
   - component: {fileID: 8196277982737976626}
   - component: {fileID: 2210769958434422274}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4963,7 +4963,7 @@ PrefabInstance:
     - target: {fileID: 6862267969991189279, guid: 69b5b941158e2294a81787d80263b5ba,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69b5b941158e2294a81787d80263b5ba, type: 3}

@@ -6,7 +6,22 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: glocknormal
+    second: {fileID: 2800000, guid: 9604f8b63f3edf04eb1542367bdc61db, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: glocktexture
+    second: {fileID: 2800000, guid: b1869e43d133d794a99d7526bf414dd7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: guard1Text(DIF)
+    second: {fileID: 2800000, guid: 97a3f066afd326144bfb7e41e9ba5c99, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

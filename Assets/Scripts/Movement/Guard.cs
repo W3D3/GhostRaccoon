@@ -6,6 +6,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
+/**
+ * This is terrible code
+ * please don't look at it.
+ */
 public class Guard : MonoBehaviour
 {
     public List<Vector3> waypoints;
@@ -46,6 +50,14 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (agent.velocity.magnitude < 1)
+        {
+            _animator.SetInteger("State", 0);
+        }
+        else
+        {
+            _animator.SetInteger("State", 1);
+        }
         // Check if any raccoons can be shot
         foreach (var target in _fieldOfView.visibleTargets)
         {
@@ -60,7 +72,7 @@ public class Guard : MonoBehaviour
         }
         // Movement code
         bool close = Mathf.Abs(transform.position.x - waypoints[index].x) +  Mathf.Abs(transform.position.z - waypoints[index].z) == 0;
-        if (close)
+        if (close || agent.isPathStale)
         {
             if (isAlerted)
             {
@@ -91,7 +103,7 @@ public class Guard : MonoBehaviour
     private void setNextDestination()
     {
         index = (index + 1) % waypoints.Count;
-        Debug.Log("walking to index " + index);
+        Debug.Log(this.name + " is walking to pos " + waypoints[index] + " with index " + index);
         resumeNormal();
         agent.SetDestination(waypoints[index]);
         
