@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
@@ -15,13 +16,21 @@ public class UIController : MonoBehaviour
     private bool _isGameOver = false;
     private bool _isWinning = false;
 
-    // Start is called before the first frame update
+    private TextMeshProUGUI _text;
+
+    public Color Player1Color;
+    public Color Player2Color;
+
+    public int ActivePlayer;
+    
     void Start()
     {
-        
-    }
+        _text = GetComponentInChildren<TextMeshProUGUI>();
 
-    // Update is called once per frame
+        _text.text = "Raccoon 1";
+        _text.color = Player1Color;
+    }
+    
     void Update()
     {
         if (InputController.IsJumpPressed())
@@ -29,10 +38,29 @@ public class UIController : MonoBehaviour
             if (_isGameOver)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            } else if (_isWinning)
+            }
+            else if (_isWinning)
             {
                 SceneManager.LoadScene(NextLevelName);
             }
+        }
+    }
+
+    public void SetActivePlayer(int player)
+    {
+        if (_text == null)
+            return;
+
+        ActivePlayer = player;
+        if (player == 0)
+        {
+            _text.text = "Raccoon 1";
+            _text.color = Player1Color;
+        }
+        else
+        {
+            _text.text = "Raccoon 2";
+            _text.color = Player2Color;
         }
     }
 
