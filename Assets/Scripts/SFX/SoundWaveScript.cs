@@ -13,8 +13,6 @@ public class SoundWaveScript : MonoBehaviour
         _material = GetComponent<Renderer>().material;
 
         _material.SetFloat("_Fade", 0f);
-
-        Debug.Log(GetComponent<Renderer>().materials.Length);
     }
 
     // Update is called once per frame

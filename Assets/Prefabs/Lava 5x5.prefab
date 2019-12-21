@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 235168078715340726}
   - component: {fileID: 9112851322746715558}
   - component: {fileID: 3531960970823101645}
-  m_Layer: 0
-  m_Name: Lava
+  m_Layer: 10
+  m_Name: Lava 5x5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487747776454138809}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5036916157908269352}
   - component: {fileID: 3132756045080397212}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7506758111600602364}
   - component: {fileID: 7329445866862872009}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1600439683470903749}
   - component: {fileID: 8302464193615923823}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2231005625381620927}
   - component: {fileID: 1068147015479910418}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ public class Raccoon : MonoBehaviour
     private Rigidbody _rigidbody;
 
     private GamepadInput _inputHandler;
-    
+
     private float moveSpeed = 6;
     private Vector3 _velocity;
 
@@ -30,7 +30,7 @@ public class Raccoon : MonoBehaviour
      * Prefab for the shockwave
      */
     public GameObject ShockwavePrefab;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,9 +43,10 @@ public class Raccoon : MonoBehaviour
     {
         if (ForceMovement)
             IsMovementActive = true;
-        
-        _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(),0, _inputHandler.GetLeftVerticalValue()).normalized * moveSpeed;
-        
+
+        _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(), 0, _inputHandler.GetLeftVerticalValue())
+                        .normalized * moveSpeed;
+
         if (!IsMovementActive)
             return;
 
@@ -62,14 +63,20 @@ public class Raccoon : MonoBehaviour
             Instantiate(ShockwavePrefab, transform.position, Quaternion.identity);
         }
     }
-    
+
     private void FixedUpdate()
     {
         if (!IsMovementActive)
             return;
         if (_velocity != Vector3.zero)
             SoundManager.Instance.playRacMove();
-        
+
         _rigidbody.MovePosition(_rigidbody.position + _velocity * Time.fixedDeltaTime);
+    }
+
+    public void Die()
+    {
+        // TODO kill for real
+        Debug.Log("killed");
     }
 }
