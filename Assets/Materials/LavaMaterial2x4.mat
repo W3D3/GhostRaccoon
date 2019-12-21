@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LavaMaterial
+  m_Name: LavaMaterial2x4
   m_Shader: {fileID: -6465566751694194690, guid: 414e503d96253664cb7559afa1860edd,
     type: 3}
   m_ShaderKeywords: 
@@ -36,4 +36,4 @@ Material:
     m_Floats:
     - Vector1_60810177: 2
     m_Colors:
-    - Vector2_85290024: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_85290024: {r: 2, g: 4, b: 0, a: 0}

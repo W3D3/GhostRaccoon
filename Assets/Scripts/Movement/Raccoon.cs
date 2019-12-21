@@ -75,6 +75,7 @@ public class Raccoon : MonoBehaviour
         if (_velocity != Vector3.zero)
             SoundManager.Instance.playRacMove();
 
+        transform.LookAt(_rigidbody.position + _velocity * Time.fixedDeltaTime);
         _rigidbody.MovePosition(_rigidbody.position + _velocity * Time.fixedDeltaTime);
     }
 
