@@ -59,22 +59,28 @@ public class Raccoon : MonoBehaviour
         _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(), 0, _inputHandler.GetLeftVerticalValue())
                         .normalized * moveSpeed;
 
-        if (!IsMovementActive)
-            return;
+        if (IsMovementActive)
+            HandleMovement();
+    }
 
+    private void HandleMovement()
+    {
         if (this.ToString().Contains("Raccoon1") && _inputHandler.IsChangeFeaturePressed()
-            || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltChangeFeaturePressed())
+            || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltChangeFeaturePressed()
+            || _inputHandler.IsSpecialFirePressed())
         {
             HandsOverMovement?.Invoke();
         }
 
         if (this.ToString().Contains("Raccoon1") && _inputHandler.IsShockwaveFeaturePressed()
-            || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltShockwaveFeaturePressed())
+            || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltShockwaveFeaturePressed()
+            || _inputHandler.IsRegularFirePressed())
         {
             SoundManager.Instance.playRacNoise();
             _soundEmitter.makeSound();
             Instantiate(ShockwavePrefab, transform.position, Quaternion.identity);
         }
+        
     }
 
     private void FixedUpdate()
