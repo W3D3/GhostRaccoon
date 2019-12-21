@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Events;
-using UnityEngine.Experimental.PlayerLoop;
 
 public class RaccoonMovementManager : MonoBehaviour
 {
@@ -18,6 +14,11 @@ public class RaccoonMovementManager : MonoBehaviour
     /// The soul which will be shown on movement swap.
     /// </summary>
     public Soul Soul;
+
+    /// <summary>
+    /// Change player info (UI)
+    /// </summary>
+    public PlayerInfoScript playerInfo;
 
     private Raccoon _activeMovementRaccoon = null;
 
@@ -54,6 +55,11 @@ public class RaccoonMovementManager : MonoBehaviour
         _activeMovementRaccoon.IsMovementActive = true;
         _activeMovementRaccoon.HandsOverMovement.AddListener(HandleHandOverMovement);
         _activeMovementRaccoon.Died.AddListener(HandleDied);
+
+        if (playerInfo != null)
+        {
+            playerInfo.SetActivePlayer(value == Raccoons.First() ? 0 : 1);
+        }
     }
 
     private void MoveSoul(Raccoon from, Raccoon to)
@@ -94,11 +100,7 @@ public class RaccoonMovementManager : MonoBehaviour
             Raccoon first = Raccoons.First();
             Raccoon second = Raccoons.Last();
 
-            if (first.IsDead || second.IsDead)
-                return false;
-            
-            var layerMask = ~((1 << first.gameObject.layer) | (1 << second.gameObject.layer));
-            return !Physics.Linecast(first.transform.position, second.transform.position, layerMask);
+            return !(first.IsDead || second.IsDead);
         }
     }
 
