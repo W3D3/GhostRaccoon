@@ -33,6 +33,7 @@ public class RaccoonManager : MonoBehaviour
                 if (_activeMovementRaccoon != null)
                 {
                     _activeMovementRaccoon.IsMovementActive = false;
+                    _activeMovementRaccoon.StopMoving();
                     RemoveRaccoonHandlers(_activeMovementRaccoon);
 
                     // show soul
