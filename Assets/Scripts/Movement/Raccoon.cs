@@ -25,6 +25,11 @@ public class Raccoon : MonoBehaviour
     /// Boolean if the movement is active for this raccoon.
     /// </summary>
     public bool IsMovementActive { get; set; }
+
+    /**
+     * Prefab for the shockwave
+     */
+    public GameObject ShockwavePrefab;
     
     // Start is called before the first frame update
     void Start()
@@ -41,15 +46,20 @@ public class Raccoon : MonoBehaviour
         
         _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(),0, _inputHandler.GetLeftVerticalValue()).normalized * moveSpeed;
         
-        // movement
         if (!IsMovementActive)
             return;
 
-        // TODO remove if not using 2 keyboards
         if (this.ToString().Contains("Raccoon1") && _inputHandler.IsChangeFeaturePressed()
             || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltChangeFeaturePressed())
         {
             HandsOverMovement?.Invoke();
+        }
+
+        if (this.ToString().Contains("Raccoon1") && _inputHandler.IsShockwaveFeaturePressed()
+            || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltShockwaveFeaturePressed())
+        {
+            SoundManager.Instance.playRacNoise();
+            Instantiate(ShockwavePrefab, transform.position, Quaternion.identity);
         }
     }
     

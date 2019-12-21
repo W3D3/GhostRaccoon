@@ -14,6 +14,11 @@ public class RaccoonMovementManager : MonoBehaviour
     /// </summary>
     public List<Raccoon> Raccoons;
 
+    /// <summary>
+    /// The soul which will be shown on movement swap.
+    /// </summary>
+    public Soul Soul;
+
     private Raccoon _activeMovementRaccoon = null;
 
     /// <summary>
@@ -31,20 +36,44 @@ public class RaccoonMovementManager : MonoBehaviour
                 {
                     _activeMovementRaccoon.IsMovementActive = false;
                     _activeMovementRaccoon.HandsOverMovement.RemoveAllListeners();
-                }
 
-                // add for new
-                _activeMovementRaccoon = value;
-                _activeMovementRaccoon.IsMovementActive = true;
-                _activeMovementRaccoon.HandsOverMovement.AddListener(HandleHandOverMovement);
+                    // show soul
+                    MoveSoul(_activeMovementRaccoon, value);
+                }
+                else
+                    SetActiveMovementRaccoon(value);
             }
         }
+    }
+
+    private void SetActiveMovementRaccoon(Raccoon value)
+    {
+        // add for new
+        _activeMovementRaccoon = value;
+        _activeMovementRaccoon.IsMovementActive = true;
+        _activeMovementRaccoon.HandsOverMovement.AddListener(HandleHandOverMovement);
+    }
+
+    private void MoveSoul(Raccoon from, Raccoon to)
+    {
+        Vector3 start = from.transform.position;
+        var s = Instantiate(Soul, start, Quaternion.identity);
+        s.MovementFinished.AddListener(SoulMovementFinished);
+        s.Move(from, to);
+    }
+
+    private void SoulMovementFinished(Raccoon goal)
+    {
+        SetActiveMovementRaccoon(goal);
     }
 
     public void HandleHandOverMovement()
     {
         if (RaccoonsHaveLineOfSight)
+        {
+            SoundManager.Instance.playRacSwitch();
             ActiveMovementRaccoon = Raccoons.Single(r => r != ActiveMovementRaccoon);
+        }
     }
 
     private bool RaccoonsHaveLineOfSight

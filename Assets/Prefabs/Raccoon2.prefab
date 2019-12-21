@@ -220,6 +220,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ForceMovement: 0
+  ShockwavePrefab: {fileID: 3414354009756653860, guid: 5c53ae2f095914d4c957abcda5a75369,
+    type: 3}
 --- !u!114 &6585212606273475067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,5 +235,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnablePlayerControls: 1
-  ControllerNumber: 0
+  ControllerNumber: 2
   ShootingButtonThreshold: 0
