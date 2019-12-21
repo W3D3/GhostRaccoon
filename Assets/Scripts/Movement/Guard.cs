@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -65,8 +66,13 @@ public class Guard : MonoBehaviour
             if (raccoon != null && !raccoon.IsDead)
             {
                 agent.isStopped = true;
+                var text = GetComponentInChildren<LookAtCameraScript>(true);
+                text.gameObject.SetActive(true);
+                SoundManager.Instance.playDetect();
+                
                 _animator.SetInteger("State", 2);
                 // TODO SoundManager.Instance.PlayGunSound()
+                
                 raccoon.Die();
             }
         }
@@ -111,6 +117,9 @@ public class Guard : MonoBehaviour
 
     private void resumeNormal()
     {
+        var text = GetComponentInChildren<LookAtCameraScript>(true);
+        text.gameObject.SetActive(false);
+        
         agent.isStopped = false;
         _animator.SetInteger("State", 1);
     }

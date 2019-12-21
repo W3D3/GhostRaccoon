@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Raccoon
+  - Text
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,6 @@ TagManager:
   - Obstacles
   - Lava
   - Solid
-  - 
   - 
   - 
   - 
