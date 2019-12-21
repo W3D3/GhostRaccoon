@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Cinemachine.Utility;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Timeline;
@@ -18,6 +19,7 @@ public class Raccoon : MonoBehaviour
 
     public UnityEvent HandsOverMovement;
     public UnityEvent<Raccoon> Died = new RaccoonUnityEvent();
+    public UnityEvent Won;
 
     /// <summary>
     /// Forces movement independent of xor movement.
@@ -104,8 +106,6 @@ public class Raccoon : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("died");
-        
         IsDead = true;
         IsMovementActive = false;
         
@@ -113,5 +113,12 @@ public class Raccoon : MonoBehaviour
         SoundManager.Instance.playDeath();
         
         Died?.Invoke(this);
+    }
+
+    public void Win()
+    {
+        this.gameObject.SetActive(false);
+
+        Won?.Invoke();
     }
 }
