@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 /**
@@ -22,7 +23,16 @@ public class SoundEmitter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            makeSound();
+        }
         
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, soundRadius);
     }
 
     void makeSound()
@@ -31,7 +41,11 @@ public class SoundEmitter : MonoBehaviour
 
         foreach (var target in targetsInSoundRadius)
         {
-            var guard = target.GetComponent<Guard>();
+            Guard guard = target.GetComponent<Guard>();
+            if (guard != null)
+            {
+                guard.alertGuard(transform.position);
+            }
         }
     }
 }
