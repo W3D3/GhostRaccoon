@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading;
 using Cinemachine.Utility;
 using Unity.Collections;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class Raccoon : MonoBehaviour
     public UnityEvent HandsOverMovement;
     public UnityEvent<Raccoon> Died = new RaccoonUnityEvent();
     public UnityEvent Won;
-    
+
     public float MoveSpeed = 5;
 
     /// <summary>
@@ -114,15 +115,21 @@ public class Raccoon : MonoBehaviour
         _animator.SetFloat("Speed", 0);
     }
 
-    public void Die()
+    public async void Die()
     {
         IsDead = true;
         IsMovementActive = false;
         
-        _animator.SetTrigger("Dying");
-        SoundManager.Instance.playDeath();
+        StartCoroutine(Wait5SecondsAsync());
         
         Died?.Invoke(this);
+    }
+
+    private IEnumerator Wait5SecondsAsync()
+    {
+        _animator.SetTrigger("Dying");
+        yield return new WaitForSeconds(.7f);
+        SoundManager.Instance.playDeath();
     }
 
     public void Win()
