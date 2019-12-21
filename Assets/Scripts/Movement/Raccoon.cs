@@ -98,7 +98,7 @@ public class Raccoon : MonoBehaviour
         }
         else
         {
-            stop();
+            StopMoving();
         }
     }
 
@@ -109,7 +109,7 @@ public class Raccoon : MonoBehaviour
         _rigidbody.MovePosition(_rigidbody.position + _velocity * Time.fixedDeltaTime);
     }
 
-    private void stop()
+    public void StopMoving()
     {
         _animator.SetFloat("Speed", 0);
     }
