@@ -24,6 +24,9 @@ public class FieldOfView : MonoBehaviour
     public MeshFilter viewMeshFilter;
     private Mesh viewMesh;
 
+    public int edgeDetectionAccuracy = 6;
+    public float edgeDistanceThreshold =  .5f;
+    
     void Start()
     {
         viewMesh = new Mesh();
@@ -70,15 +73,36 @@ public class FieldOfView : MonoBehaviour
     {
         int stepCount = Mathf.RoundToInt(viewAngle * resolution);
         float stepAngleSize = viewAngle / stepCount;
-
+        ViewCastInfo oldViewCast = new ViewCastInfo();
 
         List<Vector3> viewPoints = new List<Vector3>();
         for (int i = 0; i < stepCount; i++)
         {
             float angle = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
-            // Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * viewRadius, Color.magenta);
+            Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * viewRadius, Color.magenta);
             ViewCastInfo viewCast = ViewCast(angle);
+
+            if (i > 0)
+            {
+                bool edgeDistanceThresholdExceeded =
+                    Mathf.Abs(oldViewCast.distance - viewCast.distance) > edgeDistanceThreshold;
+                if (oldViewCast.hit != viewCast.hit || (oldViewCast.hit && viewCast.hit && edgeDistanceThresholdExceeded))
+                {
+                    var edge = FindEdgeBetween(oldViewCast, viewCast);
+                    if (edge.pointA != Vector3.zero)
+                    {
+                        viewPoints.Add(edge.pointA);
+                        Debug.DrawLine(transform.position, edge.pointA, Color.green);
+                    }
+                    if (edge.pointB != Vector3.zero)
+                    {
+                        viewPoints.Add(edge.pointB);
+                        Debug.DrawLine(transform.position, edge.pointB, Color.green);
+                    }
+                }
+            }
             viewPoints.Add(viewCast.point);
+            oldViewCast = viewCast;
         }
 
         int vertexCount = viewPoints.Count + 1; // +1 for origin
@@ -117,6 +141,38 @@ public class FieldOfView : MonoBehaviour
             return new ViewCastInfo(false, transform.position + dir * viewRadius, viewRadius, globalAngle);
         }
     }
+
+    EdgeInfo FindEdgeBetween(ViewCastInfo minViewCast, ViewCastInfo maxViewCast)
+    {
+        float minAngle = minViewCast.angle;
+        float maxAngle = maxViewCast.angle;
+        Vector3 minPoint = Vector3.zero;
+        Vector3 maxPoint = Vector3.zero;
+
+        for (int i = 0; i < edgeDetectionAccuracy; i++)
+        {
+            float angle = (minAngle + maxAngle) / 2;
+            ViewCastInfo midViewCast = ViewCast(angle);
+            bool edgeDistanceThresholdExceeded =
+                Mathf.Abs(minViewCast.distance - midViewCast.distance) > edgeDistanceThreshold;
+
+            if (midViewCast.hit == minViewCast.hit && !edgeDistanceThresholdExceeded)
+            {
+                // move the min to newly found mid
+                minAngle = angle;
+                minPoint = midViewCast.point;
+            }
+            else
+            {
+                // move the max to newly found mid
+                maxAngle = angle;
+                maxPoint = midViewCast.point;
+            }
+        }
+        
+        return new EdgeInfo(minPoint, maxPoint);
+        
+    }
     
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
@@ -140,6 +196,18 @@ public class FieldOfView : MonoBehaviour
             this.point = point;
             this.distance = distance;
             this.angle = angle;
+        }
+    }
+    
+    public struct EdgeInfo
+    {
+        public Vector3 pointA;
+        public Vector3 pointB;
+
+        public EdgeInfo(Vector3 pointA, Vector3 pointB)
+        {
+            this.pointA = pointA;
+            this.pointB = pointB;
         }
     }
 }
