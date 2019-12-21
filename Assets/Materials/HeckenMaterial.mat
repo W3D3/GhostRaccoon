@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1777257673587549552
+--- !u!114 &-212394024092946576
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrassMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: a6b532367b2783d45942f5927a897a49,
+  m_Name: HeckenMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: b2d62138e97be7341b93c553297fc159,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -55,10 +55,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _NormalFromTexture_9D9754C7_Texture_0:
         m_Texture: {fileID: 2800000, guid: 6b25197d146cea34bb61103bbcf16f8c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalFromTexture_B8BCB55B_Texture_0:
-        m_Texture: {fileID: 2800000, guid: 214291b61ef6f6b41a94d326285fe050, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
