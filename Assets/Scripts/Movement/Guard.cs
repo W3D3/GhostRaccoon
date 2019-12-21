@@ -46,6 +46,14 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (agent.velocity.magnitude < 1)
+        {
+            _animator.SetInteger("State", 0);
+        }
+        else
+        {
+            _animator.SetInteger("State", 1);
+        }
         // Check if any raccoons can be shot
         foreach (var target in _fieldOfView.visibleTargets)
         {
@@ -60,7 +68,7 @@ public class Guard : MonoBehaviour
         }
         // Movement code
         bool close = Mathf.Abs(transform.position.x - waypoints[index].x) +  Mathf.Abs(transform.position.z - waypoints[index].z) == 0;
-        if (close)
+        if (close || agent.isPathStale)
         {
             if (isAlerted)
             {
