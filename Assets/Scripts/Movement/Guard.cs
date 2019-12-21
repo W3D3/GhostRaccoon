@@ -62,7 +62,7 @@ public class Guard : MonoBehaviour
         foreach (var target in _fieldOfView.visibleTargets)
         {
             Raccoon raccoon = target.GetComponent<Raccoon>();
-            if (raccoon != null)
+            if (raccoon != null && !raccoon.IsDead)
             {
                 agent.isStopped = true;
                 _animator.SetInteger("State", 2);
