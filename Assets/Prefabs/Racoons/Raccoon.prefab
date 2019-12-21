@@ -183,6 +183,9 @@ MonoBehaviour:
   HandsOverMovement:
     m_PersistentCalls:
       m_Calls: []
+  Won:
+    m_PersistentCalls:
+      m_Calls: []
   ForceMovement: 0
   IsDead: 0
   ShockwavePrefab: {fileID: 3414354009756653860, guid: 5c53ae2f095914d4c957abcda5a75369,
@@ -201,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnablePlayerControls: 1
   ControllerNumber: 0
-  ShootingButtonThreshold: 0
+  ShootingButtonThreshold: 0.4
 --- !u!114 &2850007721414294394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +321,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Raccoon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651062367082650294, guid: c083e65868b9d724a8a3c3013125e006,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5574657383665397177, guid: c083e65868b9d724a8a3c3013125e006,
         type: 3}

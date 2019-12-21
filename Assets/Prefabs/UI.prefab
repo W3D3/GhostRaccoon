@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0.3372549}
+  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0.3372549}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -350,7 +350,7 @@ MonoBehaviour:
   AButton: {fileID: 4485972838247530276}
   ContinueText: {fileID: 2122892101738531122}
   RestartText: {fileID: 2884070651941786341}
-  InputController: {fileID: 0}
+  InputController: {fileID: 8071877178283845956}
   NextLevelName: 
   Player1Color: {r: 0, g: 0.3708868, b: 1, a: 1}
   Player2Color: {r: 1, g: 0, b: 0.03915453, a: 1}
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2ad5eafc5a1ec4fa78d65cb96c8d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnablePlayerControls: 0
+  EnablePlayerControls: 1
   ControllerNumber: 0
   ShootingButtonThreshold: 0
 --- !u!1 &2122892101738531122

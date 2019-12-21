@@ -70,6 +70,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02152738e9c3ca3448967a07ef23af21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &357873414393416724
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143190150678702417}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 298d5ae7e35a62443b1eb4511a9bac80, type: 3}
+  m_Controller: {fileID: 9100000, guid: d08828e1448d7e044898043df9404e4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &991583470746775640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,8 +161,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrispGoal
       objectReference: {fileID: 0}
+    - target: {fileID: 1651062367082650294, guid: 298d5ae7e35a62443b1eb4511a9bac80,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 298d5ae7e35a62443b1eb4511a9bac80, type: 3}
+--- !u!1 &9143190150678702417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 298d5ae7e35a62443b1eb4511a9bac80,
+    type: 3}
+  m_PrefabInstance: {fileID: 991583470746775640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5240073574862756674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 298d5ae7e35a62443b1eb4511a9bac80,

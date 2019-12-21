@@ -13,13 +13,14 @@ public class Raccoon : MonoBehaviour
     private GamepadInput _inputHandler;
     private Animator _animator;
     private SoundEmitter _soundEmitter;
-
-    private float moveSpeed = 6;
+    private bool _hiddenInTrash = false;
     private Vector3 _velocity;
 
     public UnityEvent HandsOverMovement;
     public UnityEvent<Raccoon> Died = new RaccoonUnityEvent();
     public UnityEvent Won;
+    
+    public float MoveSpeed = 5;
 
     /// <summary>
     /// Forces movement independent of xor movement.
@@ -57,17 +58,20 @@ public class Raccoon : MonoBehaviour
             IsMovementActive = true;
 
         _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(), 0, _inputHandler.GetLeftVerticalValue())
-                        .normalized * moveSpeed;
+                        .normalized * MoveSpeed;
 
-        if (IsMovementActive)
+        if (IsMovementActive && !_hiddenInTrash)
             HandleMovement();
     }
 
     private void HandleMovement()
     {
+        _inputHandler.IsRegularFireReleased();
+        _inputHandler.IsSpecialFireReleased();
+        
         if (this.ToString().Contains("Raccoon1") && _inputHandler.IsChangeFeaturePressed()
-            || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltChangeFeaturePressed()
-            || _inputHandler.IsSpecialFirePressed())
+          || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltChangeFeaturePressed()
+          || _inputHandler.IsSpecialFirePressed())
         {
             HandsOverMovement?.Invoke();
         }
@@ -94,7 +98,7 @@ public class Raccoon : MonoBehaviour
         }
         else
         {
-            stop();
+            StopMoving();
         }
     }
 
@@ -105,7 +109,7 @@ public class Raccoon : MonoBehaviour
         _rigidbody.MovePosition(_rigidbody.position + _velocity * Time.fixedDeltaTime);
     }
 
-    private void stop()
+    public void StopMoving()
     {
         _animator.SetFloat("Speed", 0);
     }
@@ -126,5 +130,17 @@ public class Raccoon : MonoBehaviour
         this.gameObject.SetActive(false);
 
         Won?.Invoke();
+    }
+
+    public void HideInTrash()
+    {
+        _hiddenInTrash = true;
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled=false;
+    }
+
+    public void ShowFromTrash()
+    {
+        _hiddenInTrash = false;
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled=true;
     }
 }
