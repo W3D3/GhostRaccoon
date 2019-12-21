@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1009279368847815855}
   - component: {fileID: 1009279368847815849}
   - component: {fileID: 1009279368847815854}
-  - component: {fileID: 1009279368847815848}
   m_Layer: 5
   m_Name: ActivePlayerText
   m_TagString: Untagged
@@ -156,21 +155,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1009279368847815848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009279368847815852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62467ac04a466c442a918e3353a117a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player1Color: {r: 0, g: 0.47009897, b: 1, a: 1}
-  Player2Color: {r: 1, g: 0, b: 0.17842817, a: 1}
-  ActivePlayer: 0
 --- !u!1 &1009279369252814823
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +241,7 @@ GameObject:
   - component: {fileID: 1009279370166337852}
   - component: {fileID: 1009279370166337853}
   - component: {fileID: 3129582629992885390}
+  - component: {fileID: 8071877178283845956}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -367,6 +352,24 @@ MonoBehaviour:
   RestartText: {fileID: 2884070651941786341}
   InputController: {fileID: 0}
   NextLevelName: 
+  Player1Color: {r: 0, g: 0.3708868, b: 1, a: 1}
+  Player2Color: {r: 1, g: 0, b: 0.03915453, a: 1}
+  ActivePlayer: 0
+--- !u!114 &8071877178283845956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009279370166337826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2ad5eafc5a1ec4fa78d65cb96c8d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnablePlayerControls: 0
+  ControllerNumber: 0
+  ShootingButtonThreshold: 0
 --- !u!1 &2122892101738531122
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5731530358934346990
 RectTransform:
   m_ObjectHideFlags: 0
@@ -539,7 +542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6423717286239289775
 RectTransform:
   m_ObjectHideFlags: 0
@@ -689,15 +692,13 @@ GameObject:
   - component: {fileID: 8370223177608426079}
   - component: {fileID: 2496576509642759350}
   - component: {fileID: 1679671568110283096}
-  - component: {fileID: 6510649895588314244}
-  - component: {fileID: 2844460545776939989}
   m_Layer: 5
   m_Name: A-Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &953349547430052949
 RectTransform:
   m_ObjectHideFlags: 0
@@ -766,33 +767,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
---- !u!114 &6510649895588314244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4485972838247530276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de545681d3e370c4ea673c78f01e4fed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2844460545776939989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4485972838247530276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2ad5eafc5a1ec4fa78d65cb96c8d40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnablePlayerControls: 1
-  ControllerNumber: 0
-  ShootingButtonThreshold: 0
 --- !u!1 &8929880579539418232
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8394193205364200955
 RectTransform:
   m_ObjectHideFlags: 0
