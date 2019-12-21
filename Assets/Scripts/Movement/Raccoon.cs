@@ -66,9 +66,12 @@ public class Raccoon : MonoBehaviour
 
     private void HandleMovement()
     {
+        _inputHandler.IsRegularFireReleased();
+        _inputHandler.IsSpecialFireReleased();
+        
         if (this.ToString().Contains("Raccoon1") && _inputHandler.IsChangeFeaturePressed()
-            || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltChangeFeaturePressed()
-            || _inputHandler.IsSpecialFirePressed())
+          || this.ToString().Contains("Raccoon2") && _inputHandler.IsAltChangeFeaturePressed()
+          || _inputHandler.IsSpecialFirePressed())
         {
             HandsOverMovement?.Invoke();
         }

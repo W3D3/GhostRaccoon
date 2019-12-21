@@ -18,7 +18,7 @@ public class GoalTail : MonoBehaviour
 
     public void ShowTail()
     {
-        var renderer = GetComponent<MeshRenderer>();
+        var renderer = GetComponent<SkinnedMeshRenderer>();
         renderer.enabled = true;
     }
 }
