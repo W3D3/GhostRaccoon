@@ -15,6 +15,7 @@ public class Guard : MonoBehaviour
     private bool isAlerted = false;
     private Vector3 alertTarget;
     private Animator _animator;
+    private FieldOfView _fieldOfView;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class Guard : MonoBehaviour
         transform.position = waypoints[0];
         transform.LookAt(waypoints[1 % waypoints.Count]);
         agent = GetComponent<NavMeshAgent>();
+        _fieldOfView = GetComponent<FieldOfView>();
         agent.speed = speed;
     }
 
@@ -44,6 +46,19 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if any raccoons can be shot
+        foreach (var target in _fieldOfView.visibleTargets)
+        {
+            Raccoon raccoon = target.GetComponent<Raccoon>();
+            if (raccoon != null)
+            {
+                agent.isStopped = true;
+                _animator.SetInteger("State", 2);
+                // TODO SoundManager.Instance.PlayGunSound()
+                raccoon.Die();
+            }
+        }
+        // Movement code
         bool close = Mathf.Abs(transform.position.x - waypoints[index].x) +  Mathf.Abs(transform.position.z - waypoints[index].z) == 0;
         if (close)
         {
