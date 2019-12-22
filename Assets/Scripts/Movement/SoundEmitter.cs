@@ -13,10 +13,12 @@ public class SoundEmitter : MonoBehaviour
 
     public float soundRadius;
 
+    #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, soundRadius);
     }
+    #endif
 
     public void makeSound()
     {
