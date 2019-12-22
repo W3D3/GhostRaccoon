@@ -1878,6 +1878,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1009279369252814822, guid: d9d6eb9c867b1ab4ea3c0a2ddd140d2c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -24.97998
+      objectReference: {fileID: 0}
     - target: {fileID: 1009279370166337826, guid: d9d6eb9c867b1ab4ea3c0a2ddd140d2c,
         type: 3}
       propertyPath: m_Name
@@ -4250,7 +4255,7 @@ PrefabInstance:
     - target: {fileID: 5305477989799439045, guid: 7a0b8a802759d45788356e7113965e6f,
         type: 3}
       propertyPath: ControllerNumber
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8694466987531257156, guid: 7a0b8a802759d45788356e7113965e6f,
         type: 3}
@@ -6705,7 +6710,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 1079
+    m_Bits: 55
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -6713,7 +6718,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: d62d7f955e619c748a94dbdd41b89bbd, type: 2}
 --- !u!1001 &1593417932
@@ -6791,7 +6796,7 @@ PrefabInstance:
     - target: {fileID: 6326872934554248842, guid: 6821c498bb2274161ae932c037425d61,
         type: 3}
       propertyPath: ControllerNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6326872934554248842, guid: 6821c498bb2274161ae932c037425d61,
         type: 3}
@@ -8356,9 +8361,9 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 40.000008
   orthographic: 0
-  orthographic size: 4.015969
+  orthographic size: 3.4210365
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -8382,7 +8387,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922320573}
   m_LocalRotation: {x: 0.23431996, y: 0.50458384, z: -0.14448766, w: 0.8182987}
-  m_LocalPosition: {x: -14.15513, y: 7.0000668, z: -9.99828}
+  m_LocalPosition: {x: -12.915951, y: 6.134907, z: -9.375599}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
