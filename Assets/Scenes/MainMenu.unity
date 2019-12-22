@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de545681d3e370c4ea673c78f01e4fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstLevel: 
+  FirstLevel: Level 0
 --- !u!114 &258379301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnablePlayerControls: 1
-  ControllerNumber: 0
+  ControllerNumber: 1
   ShootingButtonThreshold: 0
 --- !u!1 &884909248
 GameObject:
@@ -371,10 +371,10 @@ RectTransform:
   m_Father: {fileID: 112062049}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030518, y: 0}
-  m_SizeDelta: {x: 960, y: 634}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &884909250
 MonoBehaviour:
