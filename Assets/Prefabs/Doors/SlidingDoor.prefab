@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5809093227416076715}
   - component: {fileID: 5809093227416076716}
   - component: {fileID: 5809093227416076717}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DoorL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 5809093228215636627}
   - component: {fileID: 5809093228215636628}
   - component: {fileID: 5809093228215636626}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SlidingDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 5809093228609788313}
   - component: {fileID: 5809093228609788314}
   - component: {fileID: 5809093228609788315}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DoorR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
