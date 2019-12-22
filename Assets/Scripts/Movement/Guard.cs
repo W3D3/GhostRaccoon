@@ -65,15 +65,19 @@ public class Guard : MonoBehaviour
             Raccoon raccoon = target.GetComponent<Raccoon>();
             if (raccoon != null && !raccoon.IsDead)
             {
+                _animator.SetInteger("State", 2);
                 agent.isStopped = true;
                 var text = GetComponentInChildren<LookAtCameraScript>(true);
                 text.gameObject.SetActive(true);
                 SoundManager.Instance.playDetect();
                 
-                _animator.SetInteger("State", 2);
+                
                 // TODO SoundManager.Instance.PlayGunSound()
                 
                 raccoon.Die();
+                agent.SetDestination(raccoon.transform.position);
+                Invoke("setNextDestination", 4);
+                _animator.SetInteger("State", 4);
             }
         }
         // Movement code
