@@ -1935,7 +1935,7 @@ PrefabInstance:
     - target: {fileID: 3129582629992885390, guid: d9d6eb9c867b1ab4ea3c0a2ddd140d2c,
         type: 3}
       propertyPath: NextLevelName
-      value: MainMenu
+      value: WedesLevel
       objectReference: {fileID: 0}
     - target: {fileID: 3324396556506594812, guid: d9d6eb9c867b1ab4ea3c0a2ddd140d2c,
         type: 3}

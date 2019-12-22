@@ -2562,7 +2562,7 @@ PrefabInstance:
     - target: {fileID: 3129582629992885390, guid: d9d6eb9c867b1ab4ea3c0a2ddd140d2c,
         type: 3}
       propertyPath: NextLevelName
-      value: Level 3
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 3324396556506594812, guid: d9d6eb9c867b1ab4ea3c0a2ddd140d2c,
         type: 3}
@@ -4580,8 +4580,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847228268}
-  m_LocalRotation: {x: 0.23697312, y: 0.2062913, z: -0.05156915, w: 0.9479601}
-  m_LocalPosition: {x: -23.63, y: 14.4, z: -17.78}
+  m_LocalRotation: {x: 0.24020284, y: 0.45533323, z: -0.12904708, w: 0.8475383}
+  m_LocalPosition: {x: -23.65, y: 14.4, z: -17.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1060470292}
@@ -4927,7 +4927,7 @@ PrefabInstance:
     - target: {fileID: 5305477989799439045, guid: 7a0b8a802759d45788356e7113965e6f,
         type: 3}
       propertyPath: ControllerNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8694466987531257156, guid: 7a0b8a802759d45788356e7113965e6f,
         type: 3}
@@ -7645,7 +7645,7 @@ PrefabInstance:
     - target: {fileID: 6326872934554248842, guid: 6821c498bb2274161ae932c037425d61,
         type: 3}
       propertyPath: ControllerNumber
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6326872934554248842, guid: 6821c498bb2274161ae932c037425d61,
         type: 3}
