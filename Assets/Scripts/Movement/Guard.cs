@@ -71,10 +71,9 @@ public class Guard : MonoBehaviour
                 agent.isStopped = true;
                 var text = GetComponentInChildren<LookAtCameraScript>(true);
                 text.gameObject.SetActive(true);
+                
                 SoundManager.Instance.playDetect();
-                
-                
-                // TODO SoundManager.Instance.PlayGunSound()
+                SoundManager.Instance.playGunSound();
                 
                 raccoon.Die();
                 shootingAnimActive = true;
