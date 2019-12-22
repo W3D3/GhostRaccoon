@@ -43,6 +43,8 @@ public class Raccoon : MonoBehaviour
  */
     public GameObject ShockwavePrefab;
 
+    public bool HiddenInTrash => _hiddenInTrash;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,9 +59,16 @@ public class Raccoon : MonoBehaviour
     {
         if (ForceMovement)
             IsMovementActive = true;
-
-        _velocity = new Vector3(_inputHandler.GetLeftHorizontalValue(), 0, _inputHandler.GetLeftVerticalValue())
-                        .normalized * MoveSpeed;
+        
+        var forward = Camera.main.transform.forward;
+        var right = Camera.main.transform.right;
+        
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+        
+        _velocity = (forward * _inputHandler.GetLeftVerticalValue() + right * _inputHandler.GetLeftHorizontalValue()).normalized * MoveSpeed;
 
         if (IsMovementActive && !_hiddenInTrash)
             HandleMovement();
