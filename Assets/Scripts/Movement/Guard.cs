@@ -90,7 +90,6 @@ public class Guard : MonoBehaviour
             Raccoon raccoon = target.GetComponent<Raccoon>();
             if (raccoon != null && !raccoon.IsDead && !raccoon.HiddenInTrash)
             {
-                currentState = State.Stopped;
                 agent.isStopped = true;
                 transform.LookAt(raccoon.transform.position);
 
