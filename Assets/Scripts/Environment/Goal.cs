@@ -24,6 +24,8 @@ public class Goal : MonoBehaviour
             var raccoon = other.gameObject.GetComponent<Raccoon>();
             raccoon.Win();
             
+            SoundManager.Instance.playWin();
+            
             this.GetComponentInChildren<GoalTail>().ShowTail();
             
             

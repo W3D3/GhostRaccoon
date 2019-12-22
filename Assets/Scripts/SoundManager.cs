@@ -103,13 +103,4 @@ public class SoundManager : MonoBehaviour
         gun.clip = gunClip;
         gun.Play();
     }
-
-    /**
-     * Sound played if level is completed
-     */
-    public void playWinSound()
-    {
-        win.clip = winClip;
-        win.Play();
-    }
 }
