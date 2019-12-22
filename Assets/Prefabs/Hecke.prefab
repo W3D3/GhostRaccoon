@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1584305249558602183}
   - component: {fileID: 6747353559463390571}
   - component: {fileID: 4966480473828548334}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 119110649307937673}
   - component: {fileID: 739939881589132001}
   - component: {fileID: 6703616750178423985}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stapfl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 6535696814670118756}
   - component: {fileID: 1569785384615494222}
   - component: {fileID: 4486753357611566491}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7913130602332868357}
   - component: {fileID: 4375782574839616052}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hecke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 2792946498236991246}
   - component: {fileID: 5821729050608911671}
   - component: {fileID: 4232694137436082826}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 8599520214189022484}
   - component: {fileID: 734222382893519076}
   - component: {fileID: 3787309669640175148}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 3698238003424498695}
   - component: {fileID: 1840581269601847638}
   - component: {fileID: 1698495757994274237}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

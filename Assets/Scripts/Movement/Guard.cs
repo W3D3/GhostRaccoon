@@ -13,6 +13,13 @@ using UnityEngine.AI;
  */
 public class Guard : MonoBehaviour
 {
+    private enum Animations
+    {
+        Idle = 0,
+        Walking = 1,
+        Shooting = 2
+    }
+    
     public List<Vector3> waypoints;
     public float speed = 3;
     private int index = 0;
@@ -21,7 +28,7 @@ public class Guard : MonoBehaviour
     private Vector3 currentTarget;
     private Animator _animator;
     private FieldOfView _fieldOfView;
-    private bool shootingAnimActive;
+    private bool isSearching = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,47 +60,37 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (agent.velocity.magnitude < 1)
-        {
-            _animator.SetInteger("State", 0);
-        }
-        else
-        {
-            _animator.SetInteger("State", 1);
-        }
-
         // Check if any raccoons can be shot
         foreach (var target in _fieldOfView.visibleTargets)
         {
             Raccoon raccoon = target.GetComponent<Raccoon>();
             if (raccoon != null && !raccoon.IsDead && !raccoon.HiddenInTrash)
             {
-                this.transform.DOLookAt(raccoon.transform.position, 2f, AxisConstraint.Y);
-                _animator.SetInteger("State", 2);
                 agent.isStopped = true;
-
+                transform.DOLookAt(raccoon.transform.position, 2f, AxisConstraint.Y);
+                _animator.SetInteger("State", (int)Animations.Shooting);
+                
                 SoundManager.Instance.playGunSound();
 
                 raccoon.Die();
-                shootingAnimActive = true;
                 Invoke("resumeNormal", 4);
             }
         }
 
         // Movement code
-        bool close = Mathf.Abs(transform.position.x - currentTarget.x) +
-                     Mathf.Abs(transform.position.z - currentTarget.z) <= 0.01;
-        if (close || agent.isPathStale)
+        bool closeToCurrentTarget = Mathf.Abs(transform.position.x - currentTarget.x) +
+                                    Mathf.Abs(transform.position.z - currentTarget.z) <= 0.01;
+        if (closeToCurrentTarget)
         {
             if (isAlerted)
             {
                 agent.isStopped = true;
                 isAlerted = false;
-                _animator.SetInteger("State", 4);
+                _animator.SetInteger("State", (int)Animations.Idle);
                 Invoke("resumeNormal", 4);
                 return;
             }
-
+            
             if (waypoints != null && !agent.isStopped)
             {
                 agent.isStopped = true;
@@ -112,6 +109,9 @@ public class Guard : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Takes next waypoint from list
+    /// </summary>
     private void setNextDestination()
     {
         index = (index + 1) % waypoints.Count;
@@ -123,32 +123,24 @@ public class Guard : MonoBehaviour
 
     private void resumeNormal()
     {
-        if (shootingAnimActive)
-        {
-            // does not work yet?
-            _animator.SetInteger("State", 4);
-            shootingAnimActive = false;
-        }
-
+        if(isAlerted) return;
         StopAlertedAnimation();
 
         agent.isStopped = false;
-        _animator.SetInteger("State", 1);
+        _animator.SetInteger("State", (int) Animations.Walking);
     }
 
     public void alertGuard(Vector3 emitterPos)
     {
-        if (isAlerted) 
-            return;
+        // if (isAlerted) 
+        //     return;
         isAlerted = true;
 
         AlertedAnimation();
-
-        RaycastHit hitInfo;
-        Physics.Raycast(transform.position, emitterPos, out hitInfo);
+        
         Debug.DrawRay(transform.position, emitterPos, Color.yellow, 5f);
         currentTarget = emitterPos;
-        agent.SetDestination(emitterPos);
+        agent.SetDestination(currentTarget);
     }
 
     private void AlertedAnimation()
