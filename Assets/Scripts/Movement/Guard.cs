@@ -106,8 +106,8 @@ public class Guard : MonoBehaviour
             if (currentState == State.Alerted)
                 StopAlertedAnimation();
 
-            currentState = State.Patrolling;
-            agent.isStopped = false;
+            SetupIdle(true);
+            StartCoroutine(StartNextTarget());
         }
 
         // Movement code
@@ -158,10 +158,11 @@ public class Guard : MonoBehaviour
         agent.isStopped = false;
     }
 
-    private void SetupIdle()
+    private void SetupIdle(bool shot = false)
     {
         currentState = State.Stopped;
-        _animator.SetInteger("State", (int) Animations.Idle);
+        if (!shot)
+            _animator.SetInteger("State", (int) Animations.Idle);
         agent.isStopped = true;
     }
 
