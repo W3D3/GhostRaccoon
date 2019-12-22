@@ -54,8 +54,9 @@ public class SoundManager : MonoBehaviour
     {
         if (!racNoise.isPlaying)
         {
-             racNoise.clip = racNoiseClip;
-             racNoise.Play();
+            racNoise.volume = 0.6f;
+            racNoise.clip = racNoiseClip;
+            racNoise.Play();
         }
     }
     
@@ -91,6 +92,7 @@ public class SoundManager : MonoBehaviour
      */
     public void playDetect()
     {
+        detect.volume = 1.0f;
         detect.clip = detectClip;
         detect.Play();
     }
