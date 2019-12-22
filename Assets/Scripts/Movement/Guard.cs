@@ -19,27 +19,50 @@ public class Guard : MonoBehaviour
         Walking = 1,
         Shooting = 2
     }
-    
+
     public List<Vector3> waypoints;
     public float speed = 3;
+    public float TargetDistanceTreshold = 0.1f;
+
     private int index = 0;
     private NavMeshAgent agent;
-    private bool isAlerted = false;
     private Vector3 currentTarget;
     private Animator _animator;
     private FieldOfView _fieldOfView;
-    private bool isSearching = false;
+
+    private State currentState;
+
+    private enum State
+    {
+        Patrolling = 0,
+        Alerted = 1,
+        Stopped = 2
+    }
+
+    private int NextWaypointIndex
+    {
+        get
+        {
+            index = (index + 1) % waypoints.Count;
+            return index;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponentInChildren<Animator>();
-        transform.position = waypoints[0];
-        transform.LookAt(waypoints[1 % waypoints.Count]);
-        currentTarget = waypoints[index];
         agent = GetComponent<NavMeshAgent>();
         _fieldOfView = GetComponent<FieldOfView>();
+
+        // spawn at first waypoint
+        transform.position = waypoints[0];
+
+        var firstWaypointIdx = NextWaypointIndex;
+        transform.LookAt(waypoints[firstWaypointIdx]);
         agent.speed = speed;
+
+        setNextDestination(firstWaypointIdx);
     }
 
     private void OnDrawGizmosSelected()
@@ -61,84 +84,103 @@ public class Guard : MonoBehaviour
     void Update()
     {
         // Check if any raccoons can be shot
+        bool hitAnyRaccoon = false;
         foreach (var target in _fieldOfView.visibleTargets)
         {
             Raccoon raccoon = target.GetComponent<Raccoon>();
             if (raccoon != null && !raccoon.IsDead && !raccoon.HiddenInTrash)
             {
+                currentState = State.Stopped;
                 agent.isStopped = true;
-                transform.DOLookAt(raccoon.transform.position, 2f, AxisConstraint.Y);
-                _animator.SetInteger("State", (int)Animations.Shooting);
-                
+                transform.LookAt(raccoon.transform.position);
+
+                _animator.SetInteger("State", (int) Animations.Shooting);
                 SoundManager.Instance.playGunSound();
 
                 raccoon.Die();
-                Invoke("resumeNormal", 4);
+                hitAnyRaccoon = true;
             }
+        }
+
+        if (hitAnyRaccoon)
+        {
+            if (currentState == State.Alerted)
+                StopAlertedAnimation();
+
+            currentState = State.Patrolling;
+            agent.isStopped = false;
         }
 
         // Movement code
         bool closeToCurrentTarget = Mathf.Abs(transform.position.x - currentTarget.x) +
-                                    Mathf.Abs(transform.position.z - currentTarget.z) <= 0.01;
-        if (closeToCurrentTarget)
+                                    Mathf.Abs(transform.position.z - currentTarget.z) <= TargetDistanceTreshold;
+        if (closeToCurrentTarget && currentState != State.Stopped)
         {
-            if (isAlerted)
-            {
-                agent.isStopped = true;
-                isAlerted = false;
-                _animator.SetInteger("State", (int)Animations.Idle);
-                Invoke("resumeNormal", 4);
-                return;
-            }
-            
-            if (waypoints != null && !agent.isStopped)
-            {
-                agent.isStopped = true;
-                _animator.SetInteger("State", 0);
-                try
-                {
-                    transform.DOLookAt(waypoints[(index + 1) % waypoints.Count], 2f, AxisConstraint.Y);
-                }
-                catch (Exception e)
-                {
-                    Debug.Log(e.Message);
-                }
+            if (currentState == State.Alerted)
+                StopAlertedAnimation();
 
-                Invoke("setNextDestination", 2);
-            }
+            SetupIdle();
+            StartCoroutine(StartNextTarget());
         }
+    }
+
+    private IEnumerator StartNextTarget()
+    {
+        var nextIdx = NextWaypointIndex;
+        try
+        {
+            transform.DOLookAt(waypoints[nextIdx], 2f, AxisConstraint.Y);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        setNextDestination(nextIdx);
     }
 
     /// <summary>
     /// Takes next waypoint from list
     /// </summary>
-    private void setNextDestination()
+    private void setNextDestination(int nextIndex)
     {
-        index = (index + 1) % waypoints.Count;
-        Debug.Log(this.name + " is walking to pos " + waypoints[index] + " with index " + index);
-        resumeNormal();
-        currentTarget = waypoints[index];
+        currentTarget = waypoints[nextIndex];
         agent.SetDestination(currentTarget);
+
+        SetupMovement();
     }
 
-    private void resumeNormal()
+    private void SetupMovement()
     {
-        if(isAlerted) return;
-        StopAlertedAnimation();
-
-        agent.isStopped = false;
+        currentState = State.Patrolling;
         _animator.SetInteger("State", (int) Animations.Walking);
+        agent.isStopped = false;
     }
+
+    private void SetupIdle()
+    {
+        currentState = State.Stopped;
+        _animator.SetInteger("State", (int) Animations.Idle);
+        agent.isStopped = true;
+    }
+
+    // private void resumeNormal()
+    // {
+    //     if(isAlerted) return;
+    //     StopAlertedAnimation();
+    //
+    //     agent.isStopped = false;
+    //     _animator.SetInteger("State", (int) Animations.Walking);
+    // }
 
     public void alertGuard(Vector3 emitterPos)
     {
-        // if (isAlerted) 
-        //     return;
-        isAlerted = true;
+        currentState = State.Alerted;
 
         AlertedAnimation();
-        
-        Debug.DrawRay(transform.position, emitterPos, Color.yellow, 5f);
+
         currentTarget = emitterPos;
         agent.SetDestination(currentTarget);
     }
