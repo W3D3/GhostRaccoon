@@ -43,6 +43,8 @@ public class Raccoon : MonoBehaviour
  */
     public GameObject ShockwavePrefab;
 
+    public bool HiddenInTrash => _hiddenInTrash;
+
     // Start is called before the first frame update
     void Start()
     {

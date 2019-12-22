@@ -18,7 +18,7 @@ public class Guard : MonoBehaviour
     private int index = 0;
     private NavMeshAgent agent;
     private bool isAlerted = false;
-    private Vector3 alertTarget;
+    private Vector3 currentTarget;
     private Animator _animator;
     private FieldOfView _fieldOfView;
     private bool shootingAnimActive;
@@ -29,6 +29,7 @@ public class Guard : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         transform.position = waypoints[0];
         transform.LookAt(waypoints[1 % waypoints.Count]);
+        currentTarget = waypoints[index];
         agent = GetComponent<NavMeshAgent>();
         _fieldOfView = GetComponent<FieldOfView>();
         agent.speed = speed;
@@ -42,10 +43,10 @@ public class Guard : MonoBehaviour
             Gizmos.DrawSphere(waypoint, 0.3f);
         }
 
-        if (alertTarget != null)
+        if (currentTarget != null)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawSphere(alertTarget, 0.5f);
+            Gizmos.DrawSphere(currentTarget, 0.5f);
         }
     }
 
@@ -64,7 +65,7 @@ public class Guard : MonoBehaviour
         foreach (var target in _fieldOfView.visibleTargets)
         {
             Raccoon raccoon = target.GetComponent<Raccoon>();
-            if (raccoon != null && !raccoon.IsDead)
+            if (raccoon != null && !raccoon.IsDead && !raccoon.HiddenInTrash)
             {
                 this.transform.DOLookAt(raccoon.transform.position, 2f, AxisConstraint.Y);
                 _animator.SetInteger("State", 2);
@@ -81,7 +82,7 @@ public class Guard : MonoBehaviour
             }
         }
         // Movement code
-        bool close = Mathf.Abs(transform.position.x - waypoints[index].x) +  Mathf.Abs(transform.position.z - waypoints[index].z) <= 0.01;
+        bool close = Mathf.Abs(transform.position.x - currentTarget.x) +  Mathf.Abs(transform.position.z - currentTarget.z) <= 0.01;
         if (close || agent.isPathStale)
         {
             if (isAlerted)
@@ -115,7 +116,8 @@ public class Guard : MonoBehaviour
         index = (index + 1) % waypoints.Count;
         Debug.Log(this.name + " is walking to pos " + waypoints[index] + " with index " + index);
         resumeNormal();
-        agent.SetDestination(waypoints[index]);
+        currentTarget = waypoints[index];
+        agent.SetDestination(currentTarget);
         
     }
 
@@ -142,12 +144,12 @@ public class Guard : MonoBehaviour
         RaycastHit hitInfo;
         Physics.Raycast(transform.position, emitterPos, out hitInfo);
         Debug.DrawRay(transform.position, emitterPos, Color.yellow, 5f);
-        alertTarget = emitterPos;
+        currentTarget = emitterPos;
         agent.SetDestination(emitterPos);
         // alertTarget = hitInfo.point;
         // agent.SetDestination(hitInfo.point);
         
-        index = (index + waypoints.Count - 1) % waypoints.Count;
+        // index = (index + waypoints.Count - 1) % waypoints.Count;
     }
     
     
