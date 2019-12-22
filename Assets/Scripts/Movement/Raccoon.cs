@@ -121,6 +121,16 @@ public class Raccoon : MonoBehaviour
         IsMovementActive = false;
         
         StartCoroutine(Wait5SecondsAsync());
+        CapsuleCollider raccoonCollider = this.GetComponent<CapsuleCollider>();
+        if (raccoonCollider != null)
+        {
+            raccoonCollider.isTrigger = true;
+        }
+        Rigidbody rigidbody = this.GetComponent<Rigidbody>();
+        if (rigidbody != null)
+        {
+            rigidbody.isKinematic = true;
+        }
         
         Died?.Invoke(this);
     }

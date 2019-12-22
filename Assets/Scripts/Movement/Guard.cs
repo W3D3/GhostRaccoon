@@ -21,6 +21,7 @@ public class Guard : MonoBehaviour
     private Vector3 alertTarget;
     private Animator _animator;
     private FieldOfView _fieldOfView;
+    private bool shootingAnimActive;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +66,7 @@ public class Guard : MonoBehaviour
             Raccoon raccoon = target.GetComponent<Raccoon>();
             if (raccoon != null && !raccoon.IsDead)
             {
+                this.transform.DOLookAt(raccoon.transform.position, 2f, AxisConstraint.Y);
                 _animator.SetInteger("State", 2);
                 agent.isStopped = true;
                 var text = GetComponentInChildren<LookAtCameraScript>(true);
@@ -75,9 +77,8 @@ public class Guard : MonoBehaviour
                 // TODO SoundManager.Instance.PlayGunSound()
                 
                 raccoon.Die();
-                agent.SetDestination(raccoon.transform.position);
+                shootingAnimActive = true;
                 Invoke("setNextDestination", 4);
-                _animator.SetInteger("State", 4);
             }
         }
         // Movement code
@@ -112,6 +113,11 @@ public class Guard : MonoBehaviour
 
     private void setNextDestination()
     {
+        if (shootingAnimActive)
+        {
+            _animator.SetInteger("State", 4);
+            shootingAnimActive = false;
+        }
         index = (index + 1) % waypoints.Count;
         Debug.Log(this.name + " is walking to pos " + waypoints[index] + " with index " + index);
         resumeNormal();
