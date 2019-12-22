@@ -78,11 +78,11 @@ public class Guard : MonoBehaviour
                 
                 raccoon.Die();
                 shootingAnimActive = true;
-                Invoke("setNextDestination", 4);
+                Invoke("resumeNormal", 4);
             }
         }
         // Movement code
-        bool close = Mathf.Abs(transform.position.x - waypoints[index].x) +  Mathf.Abs(transform.position.z - waypoints[index].z) == 0;
+        bool close = Mathf.Abs(transform.position.x - waypoints[index].x) +  Mathf.Abs(transform.position.z - waypoints[index].z) <= 0.01;
         if (close || agent.isPathStale)
         {
             if (isAlerted)
@@ -113,11 +113,6 @@ public class Guard : MonoBehaviour
 
     private void setNextDestination()
     {
-        if (shootingAnimActive)
-        {
-            _animator.SetInteger("State", 4);
-            shootingAnimActive = false;
-        }
         index = (index + 1) % waypoints.Count;
         Debug.Log(this.name + " is walking to pos " + waypoints[index] + " with index " + index);
         resumeNormal();
@@ -127,6 +122,12 @@ public class Guard : MonoBehaviour
 
     private void resumeNormal()
     {
+        if (shootingAnimActive)
+        {
+            // does not work yet?
+            _animator.SetInteger("State", 4);
+            shootingAnimActive = false;
+        }
         var text = GetComponentInChildren<LookAtCameraScript>(true);
         text.gameObject.SetActive(false);
         
