@@ -21,6 +21,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip winClip;
     public AudioSource detect;
     public AudioClip detectClip;
+    public AudioSource gun;
+    public AudioClip gunClip;
     
     public static SoundManager Instance = null;
     
@@ -91,5 +93,23 @@ public class SoundManager : MonoBehaviour
     {
         detect.clip = detectClip;
         detect.Play();
+    }
+
+    /**
+     * Sound played if Guard fires a shoot
+     */
+    public void playGunSound()
+    {
+        gun.clip = gunClip;
+        gun.Play();
+    }
+
+    /**
+     * Sound played if level is completed
+     */
+    public void playWinSound()
+    {
+        win.clip = winClip;
+        win.Play();
     }
 }
