@@ -61,6 +61,7 @@ public class Guard : MonoBehaviour
         {
             _animator.SetInteger("State", 1);
         }
+
         // Check if any raccoons can be shot
         foreach (var target in _fieldOfView.visibleTargets)
         {
@@ -70,19 +71,18 @@ public class Guard : MonoBehaviour
                 this.transform.DOLookAt(raccoon.transform.position, 2f, AxisConstraint.Y);
                 _animator.SetInteger("State", 2);
                 agent.isStopped = true;
-                var text = GetComponentInChildren<LookAtCameraScript>(true);
-                text.gameObject.SetActive(true);
-                
-                SoundManager.Instance.playDetect();
+
                 SoundManager.Instance.playGunSound();
-                
+
                 raccoon.Die();
                 shootingAnimActive = true;
                 Invoke("resumeNormal", 4);
             }
         }
+
         // Movement code
-        bool close = Mathf.Abs(transform.position.x - currentTarget.x) +  Mathf.Abs(transform.position.z - currentTarget.z) <= 0.01;
+        bool close = Mathf.Abs(transform.position.x - currentTarget.x) +
+                     Mathf.Abs(transform.position.z - currentTarget.z) <= 0.01;
         if (close || agent.isPathStale)
         {
             if (isAlerted)
@@ -93,7 +93,7 @@ public class Guard : MonoBehaviour
                 Invoke("resumeNormal", 4);
                 return;
             }
-            
+
             if (waypoints != null && !agent.isStopped)
             {
                 agent.isStopped = true;
@@ -106,6 +106,7 @@ public class Guard : MonoBehaviour
                 {
                     Debug.Log(e.Message);
                 }
+
                 Invoke("setNextDestination", 2);
             }
         }
@@ -118,7 +119,6 @@ public class Guard : MonoBehaviour
         resumeNormal();
         currentTarget = waypoints[index];
         agent.SetDestination(currentTarget);
-        
     }
 
     private void resumeNormal()
@@ -129,28 +129,39 @@ public class Guard : MonoBehaviour
             _animator.SetInteger("State", 4);
             shootingAnimActive = false;
         }
-        var text = GetComponentInChildren<LookAtCameraScript>(true);
-        text.gameObject.SetActive(false);
-        
+
+        StopAlertedAnimation();
+
         agent.isStopped = false;
         _animator.SetInteger("State", 1);
     }
 
     public void alertGuard(Vector3 emitterPos)
     {
-        if(isAlerted) return;
+        if (isAlerted) 
+            return;
         isAlerted = true;
-        Debug.Log("alerted! going towards " + emitterPos.ToString());
+
+        AlertedAnimation();
+
         RaycastHit hitInfo;
         Physics.Raycast(transform.position, emitterPos, out hitInfo);
         Debug.DrawRay(transform.position, emitterPos, Color.yellow, 5f);
         currentTarget = emitterPos;
         agent.SetDestination(emitterPos);
-        // alertTarget = hitInfo.point;
-        // agent.SetDestination(hitInfo.point);
-        
-        // index = (index + waypoints.Count - 1) % waypoints.Count;
     }
-    
-    
+
+    private void AlertedAnimation()
+    {
+        var text = GetComponentInChildren<LookAtCameraScript>(true);
+        text.gameObject.SetActive(true);
+
+        SoundManager.Instance.playDetect();
+    }
+
+    private void StopAlertedAnimation()
+    {
+        var text = GetComponentInChildren<LookAtCameraScript>(true);
+        text.gameObject.SetActive(false);
+    }
 }
